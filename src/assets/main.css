@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vw;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.8125rem;
+  color: var(--light-color);
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: var(--light-color);
+  border-radius: var(--border-radius);
+  padding: 30px 40px;
+}
+
+.m-y-5 {
+  margin: 80px 0 80px 0;
+}

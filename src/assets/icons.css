@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'vue-example-icons';
+  src: url('/fonts/icons/vue-example-icons.eot?p1xzoa');
+  src: url('/fonts/icons/vue-example-icons.eot?p1xzoa#iefix')
+      format('embedded-opentype'),
+    url('/fonts/icons/vue-example-icons.ttf?p1xzoa') format('truetype'),
+    url('/fonts/icons/vue-example-icons.woff?p1xzoa') format('woff'),
+    url('/fonts/icons/vue-example-icons.svg?p1xzoa#vue-example-icons')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'vue-example-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-phone2:before {
+  content: '\e900';
+}
+.icon-phone:before {
+  content: '\e901';
+}
+.icon-location:before {
+  content: '\e902';
+}
+.icon-database:before {
+  content: '\e903';
+}
+.icon-people:before {
+  content: '\e904';
+}
+.icon-cog:before {
+  content: '\e905';
+}
+.icon-tip:before {
+  content: '\e906';
+}
+.icon-web:before {
+  content: '\e907';
+}
