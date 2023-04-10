@@ -39,16 +39,13 @@
 </style>
 
 <script setup>
-import axios from 'axios'
 import { ref } from 'vue'
+
+import { getReviews } from '@/api/requests.js'
 
 import ReviewCard from '../ReviewList/ReviewCard.vue'
 
 let reviews = ref([])
-
-const getReviews = () => {
-  return axios.get('http://localhost:1337/api/reviews?populate=avatar')
-}
 
 getReviews()
   .then((resp) => {

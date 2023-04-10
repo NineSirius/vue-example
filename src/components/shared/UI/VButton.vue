@@ -1,6 +1,12 @@
 <template>
-  <button :type="type" class="btn" :class="{ [color]: color }">
-    <slot />
+  <button
+    :type="type"
+    class="btn"
+    :class="{ [color]: color }"
+    :disabled="loading"
+  >
+    <slot v-if="!loading" />
+    <v-loader v-if="loading"></v-loader>
   </button>
 </template>
 
@@ -18,6 +24,10 @@ const props = defineProps({
   color: {
     type: String,
     default: 'primary'
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 })
 

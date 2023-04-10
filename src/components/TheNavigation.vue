@@ -8,6 +8,8 @@
       <li><RouterLink to="/gallery" class="nav-link">Галерея</RouterLink></li>
       <li><RouterLink to="/contacts" class="nav-link">Контакты</RouterLink></li>
     </ul>
+
+    <button class="hamburger">=</button>
   </div>
 </template>
 
@@ -17,7 +19,6 @@
   justify-content: center;
   background: var(--light-color);
   padding: 22px 0;
-  transform: translateX(-100%);
   .nav-links {
     display: flex;
     .nav-link {
@@ -29,23 +30,33 @@
       }
     }
   }
+}
 
-  &.active {
-    transform: translateX(0);
-  }
+.hamburger {
+  display: none;
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 30vw;
-    height: 100vh;
-
+  .hamburger {
+    display: inline-flex;
+  }
+  .navbar {
+    transform: translateX(-100%);
     .nav-links {
-      display: flex;
-      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 30vw;
+      height: 100vh;
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &.active {
+      transform: translateX(0);
     }
   }
 }

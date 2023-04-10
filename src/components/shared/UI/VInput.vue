@@ -5,6 +5,7 @@
       :name="name"
       :type="type"
       :required="required"
+      :value="value"
       v-model="value"
     />
   </div>
@@ -60,6 +61,6 @@ const { modelValue } = defineProps({
 const emits = defineEmits(['update:modelValue'])
 const value = ref(modelValue)
 watch(value, () => {
-  emits('update:modelValue', value)
+  emits('update:modelValue', value.value)
 })
 </script>

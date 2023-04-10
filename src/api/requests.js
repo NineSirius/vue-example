@@ -1,7 +1,13 @@
-import axios from 'axios'
+import ky from 'ky'
 
-const strapiApi = axios.create({ baseURL: 'http://localhost:1337/api' })
+const strapiApi = ky.create({
+  prefixUrl: 'http://localhost:1337/api'
+})
 
 export const sendEmail = (data) => {
-  return strapiApi.post('requests', { json: data }).json()
+  return strapiApi.post('requests', { json: { data: { email: data } } }).json()
+}
+
+export const getReviews = () => {
+  return strapiApi.get('reviews').json()
 }

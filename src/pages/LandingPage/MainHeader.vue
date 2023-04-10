@@ -11,15 +11,24 @@
           in sumo augue soluta vis.
         </p>
 
-        <form>
+        <form @submit.prevent="sendEmailFoo">
           <div class="header-form">
             <v-input
               type="email"
               name="email"
               placeholder="Введите свой электронный адрес"
-              modelValue="userEmail"    
+              v-model="requestEmail.email"
             />
-            <v-button type="submit">Подтвердить</v-button>
+            <v-button :loading="requestEmail.status" type="submit"
+              >Подтвердить</v-button
+            >
+
+            <div class="message" :class="{ active: requestEmail.isSend }">
+              <span class="close" @click="requestEmail.isSend = false"
+                >&times;</span
+              >
+              Спасибо! Ваше сообщение было отправлено.
+            </div>
           </div>
         </form>
 
@@ -67,12 +76,38 @@
 }
 
 .header-form {
+  position: relative;
+  overflow: hidden;
   background: #f2f2f2;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+
+  .message {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+    background: green;
+    font-size: 1.25rem;
+    color: var(--light-color);
+    text-align: center;
+    transform: translateY(100%);
+    transition: 0.1s;
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 10px;
+    }
+
+    &.active {
+      transform: translateY(0);
+    }
+  }
 }
 
 .header-contact-wrap {
@@ -127,14 +162,22 @@
 
 <script setup>
 // import TheNavigation from './TheNavigation.vue'
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { sendEmail } from '@/api/requests.js'
 
-const userEmail = ref('')
+let requestEmail = reactive({
+  email: '',
+  status: false,
+  isSend: false
+})
 
 const sendEmailFoo = () => {
-  sendEmail(email)
+  requestEmail.status = true
+  console.log(requestEmail.email)
+  sendEmail(requestEmail.email).then((resp) => {
+    console.log(resp)
+    requestEmail.status = false
+    requestEmail.isSend = true
+  })
 }
-
-const email = ref('0')
 </script>
