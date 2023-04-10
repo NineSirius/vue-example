@@ -1,12 +1,12 @@
 <template>
   <div class="navbar" :class="{ active: isActive }">
     <ul class="nav-links">
-      <router-link to="/home" class="nav-link">Главная</router-link>
-      <router-link to="/landing" class="nav-link">Лендинг</router-link>
-      <router-link to="/about" class="nav-link">О нас</router-link>
-      <router-link to="/team" class="nav-link">Команда</router-link>
-      <router-link to="/gallery" class="nav-link">Галерея</router-link>
-      <router-link to="/contacts" class="nav-link">Контакты</router-link>
+      <li><RouterLink to="/home" class="nav-link">Главная</RouterLink></li>
+      <li><RouterLink to="/landing" class="nav-link">Лендинг</RouterLink></li>
+      <li><RouterLink to="/about" class="nav-link">О нас</RouterLink></li>
+      <li><RouterLink to="/team" class="nav-link">Команда</RouterLink></li>
+      <li><RouterLink to="/gallery" class="nav-link">Галерея</RouterLink></li>
+      <li><RouterLink to="/contacts" class="nav-link">Контакты</RouterLink></li>
     </ul>
   </div>
 </template>
@@ -65,6 +65,8 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { RouterLink } from 'vue-router'
+
 const mobileNav = reactive({
   default: 'navbar',
   isActive: false

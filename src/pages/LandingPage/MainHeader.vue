@@ -17,7 +17,7 @@
               type="email"
               name="email"
               placeholder="Введите свой электронный адрес"
-              modelValue="userEmail"
+              modelValue="userEmail"    
             />
             <v-button type="submit">Подтвердить</v-button>
           </div>
@@ -126,7 +126,7 @@
 </style>
 
 <script setup>
-import TheNavigation from './TheNavigation.vue'
+// import TheNavigation from './TheNavigation.vue'
 import { ref } from 'vue'
 import { sendEmail } from '@/api/requests.js'
 

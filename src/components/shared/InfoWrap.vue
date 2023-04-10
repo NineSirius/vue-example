@@ -19,4 +19,10 @@
     flex-basis: 50%;
   }
 }
+
+@media (max-width: 768px) {
+  .info-wrap {
+    flex-direction: column;
+  }
+}
 </style>

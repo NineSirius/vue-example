@@ -64,3 +64,14 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu Regular'), local('Ubuntu-Regular'),
+    url('/fonts/Ubuntu/Ubuntu-Regular.woff2') format('woff2'),
+    url('/fonts/Ubuntu/Ubuntu-Regular.woff') format('woff'),
+    url('/fonts/Ubuntu/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

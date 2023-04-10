@@ -6,12 +6,14 @@
       <div class="container">
         <InfoWrap>
           <template v-slot:first-content>
-            <img
-              src="/img/info-img.png"
-              alt="landing info image"
-              class="info-items-img"
-              style="width: 80%"
-            />
+            <div class="info-img-wrap">
+              <img
+                src="/img/info-img.png"
+                alt="landing info image"
+                class="info-items-img"
+                style="width: 80%"
+              />
+            </div>
           </template>
 
           <template v-slot:second-content>
@@ -55,15 +57,17 @@
             </div>
           </template>
           <template v-slot:second-content>
-            <img
-              src="/img/info-img2.png"
-              alt="landing info image"
-              class="info-items-img"
-            />
+            <div class="info-img-wrap">
+              <img
+                src="/img/info-img2.png"
+                alt="landing info image"
+                class="info-items-img"
+              />
+            </div>
           </template>
         </InfoWrap>
 
-        <div class="card"></div>
+        <NumberContact></NumberContact>
       </div>
     </div>
 
@@ -78,10 +82,19 @@
 
 .info-about-2 {
   background: var(--additional-color);
+  padding: 100px 0;
 }
 
-.info-items-img {
+.info-img-wrap {
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-items-img {
+  width: 70% !important;
+  align-self: center;
 }
 .info-items-wrap {
   height: 100%;
@@ -93,6 +106,7 @@
 
   .info-item {
     width: 100%;
+    align-self: center;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -116,8 +130,6 @@
 }
 
 .info-wrap {
-  padding: 100px 0;
-
   &:nth-child(2) {
     background: var(--secondary-color);
   }
@@ -146,20 +158,32 @@
   justify-content: center;
   align-items: center;
   align-self: center;
+  color: #fff;
+
+  i {
+    font-size: 32px;
+  }
 }
 
-.icon:nth-child(1) {
-  background: var(--primary-color);
+.info-item:nth-child(1) {
+  .icon {
+    background: var(--primary-color);
+  }
 }
-.icon:nth-child(2) {
-  background: var(--secondary-color);
+.info-item:nth-child(2) {
+  .icon {
+    background: var(--secondary-color);
+  }
 }
-.icon:nth-child(3) {
-  background: var(--additional-color);
+.info-item:nth-child(3) {
+  .icon {
+    background: var(--additional-color);
+  }
 }
 </style>
 
 <script setup>
+import NumberContact from '@/components/shared/NumberContact.vue'
 import InfoWrap from '../../components/shared/InfoWrap.vue'
 import MainSponsors from '../../components/MainContent/MainSponsors.vue'
 import ReviewList from '../../components/shared/ReviewList/ReviewList.vue'

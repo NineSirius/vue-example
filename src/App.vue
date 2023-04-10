@@ -1,10 +1,14 @@
 <script setup>
-import MainHeader from './components/MainHeader.vue'
+import { RouterView } from 'vue-router'
+import { TheNavigation } from './components/TheNavigation.vue'
 </script>
 
 <template>
   <div class="wrapper">
-    <MainHeader></MainHeader>
-    <MainContent></MainContent>
+    <TheNavigation />
+    <!-- <MainHeader></MainHeader> -->
+    <!-- <MainContent></MainContent> -->
+
+    <RouterView></RouterView>
   </div>
 </template>
