@@ -13,7 +13,9 @@
       </ul>
 
       <button class="hamburger" @click="switchIsActive">=</button>
-      <v-button style="margin-left: auto">Аккаунт</v-button>
+      <v-button style="margin-left: auto" @click="authModal = true"
+        >Аккаунт</v-button
+      >
     </div>
     <div
       class="overlay"
@@ -22,7 +24,9 @@
     ></div>
   </div>
 
-  <v-modal isActive="false"><h2>Hello world</h2></v-modal>
+  <v-modal :isActive="authModal" @closeModal="authModal = false">
+    <AuthForm
+  /></v-modal>
 </template>
 
 <style scoped lang="scss">
@@ -94,8 +98,9 @@
 </style>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import AuthForm from '@/components/Forms/AuthForm/AuthForm.vue'
 
 const switchIsActive = () => {
   mobileNav.isActive = !mobileNav.isActive
@@ -106,4 +111,6 @@ const mobileNav = reactive({
   default: 'navbar',
   isActive: false
 })
+
+const authModal = ref(false)
 </script>

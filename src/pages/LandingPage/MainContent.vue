@@ -71,6 +71,25 @@
       </div>
     </div>
 
+    <div class="company-stats container">
+      <div class="card">
+        <h2 class="card-title">560k</h2>
+        <p>Digital global audience reach</p>
+      </div>
+      <div class="card">
+        <h2 class="card-title">79%</h2>
+        <p>OF THE AUDIENCE IS UNDER 34 YEARS OLD</p>
+      </div>
+      <div class="card">
+        <h2 class="card-title">80%</h2>
+        <p>CONTENT PIECES PRODUCED EVERYDAY</p>
+      </div>
+      <div class="card">
+        <h2 class="card-title">1340</h2>
+        <p>MARKETING STRATEGY & SEO CAMPAIGNS</p>
+      </div>
+    </div>
+
     <ReviewList></ReviewList>
   </main>
 </template>
@@ -82,7 +101,7 @@
 
 .info-about-2 {
   background: var(--additional-color);
-  padding: 100px 0;
+  padding: 100px 0 0 0;
 }
 
 .info-img-wrap {
@@ -90,6 +109,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+
   align-items: center;
 }
 .info-items-img {
@@ -178,6 +198,60 @@
 .info-item:nth-child(3) {
   .icon {
     background: var(--additional-color);
+  }
+}
+
+.company-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 370px));
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--light-color);
+  gap: 20px;
+
+  .card {
+    text-align: center;
+    font-size: 2.5rem;
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    height: 370px;
+
+    &:first-child {
+      background: var(--primary-color);
+    }
+    &:nth-child(2) {
+      background: var(--secondary-color);
+    }
+    &:nth-child(3) {
+      background: var(--success-color);
+    }
+    &:nth-child(4) {
+      background: var(--additional-color);
+    }
+
+    .card-title {
+      color: var(--light-color);
+    }
+    p {
+      text-transform: uppercase;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .company-stats {
+    grid-template-columns: repeat(1, minmax(0, 300px));
+    padding: 60px 0;
+
+    .card {
+      height: auto;
+    }
   }
 }
 </style>

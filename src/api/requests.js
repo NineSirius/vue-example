@@ -13,3 +13,7 @@ export const sendEmail = (data) => {
 export const getReviews = () => {
   return strapiApi.get('reviews?populate=avatar').json()
 }
+
+export const getTeamList = () => {
+  return strapiApi.get('teams').json()
+}

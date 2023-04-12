@@ -18,11 +18,14 @@
   <NumberContact
     style="background-color: var(--additional-color)"
   ></NumberContact>
+
+  <TeamList></TeamList>
 </template>
 
 <script setup>
 import PageHeader from '@/components/shared/PageHeader.vue'
 import NumberContact from '@/components/shared/NumberContact.vue'
+import TeamList from '@/components/TeamList/TeamList.vue'
 </script>
 
 <style lang="scss" scoped></style>
