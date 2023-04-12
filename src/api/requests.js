@@ -5,9 +5,11 @@ const strapiApi = ky.create({
 })
 
 export const sendEmail = (data) => {
-  return strapiApi.post('requests', { json: { data: { email: data } } }).json()
+  return strapiApi
+    .post('requests?populate', { json: { data: { email: data } } })
+    .json()
 }
 
 export const getReviews = () => {
-  return strapiApi.get('reviews').json()
+  return strapiApi.get('reviews?populate=avatar').json()
 }

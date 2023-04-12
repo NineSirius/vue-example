@@ -23,11 +23,23 @@
               >Подтвердить</v-button
             >
 
-            <div class="message" :class="{ active: requestEmail.isSend }">
+            <div
+              class="message success"
+              :class="{ active: requestEmail.isSend }"
+            >
               <span class="close" @click="requestEmail.isSend = false"
                 >&times;</span
               >
               Спасибо! Ваше сообщение было отправлено.
+            </div>
+            <div
+              class="message error"
+              :class="{ active: requestEmail.isError }"
+            >
+              <span class="close" @click="requestEmail.isError = false"
+                >&times;</span
+              >
+              При отправке возникла ошибка. Попробуйте повторить запрос позже
             </div>
           </div>
         </form>
@@ -90,11 +102,13 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 80%;
-    background: green;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-self: start;
     font-size: 1.25rem;
     color: var(--light-color);
-    text-align: center;
     transform: translateY(100%);
     transition: 0.1s;
 
@@ -102,6 +116,19 @@
       position: absolute;
       top: 0;
       right: 10px;
+      font-size: 20px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &.success {
+      background: var(--success-color);
+    }
+
+    &.error {
+      background: var(--error-color);
     }
 
     &.active {
@@ -168,16 +195,24 @@ import { sendEmail } from '@/api/requests.js'
 let requestEmail = reactive({
   email: '',
   status: false,
-  isSend: false
+  isSend: false,
+  isError: false
 })
 
 const sendEmailFoo = () => {
   requestEmail.status = true
   console.log(requestEmail.email)
-  sendEmail(requestEmail.email).then((resp) => {
-    console.log(resp)
-    requestEmail.status = false
-    requestEmail.isSend = true
-  })
+  sendEmail(requestEmail.email)
+    .then((resp) => {
+      console.log(resp)
+      requestEmail.status = false
+      requestEmail.isSend = true
+      requestEmail.isError = false
+    })
+    .catch((err) => {
+      console.log(err)
+      requestEmail.status = false
+      requestEmail.isError = true
+    })
 }
 </script>

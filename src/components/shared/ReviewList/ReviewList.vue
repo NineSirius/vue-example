@@ -49,7 +49,7 @@ let reviews = ref([])
 
 getReviews()
   .then((resp) => {
-    reviews.value = resp.data.data
+    reviews.value = resp?.data
   })
   .catch((err) => console.log(err))
 </script>
