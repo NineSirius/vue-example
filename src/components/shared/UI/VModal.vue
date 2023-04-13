@@ -1,5 +1,11 @@
 <template>
-  <div class="modal" :class="{ active: isActive }">
+  <div
+    class="modal"
+    :class="{ active: isActive }"
+    :style="{
+      background: bg
+    }"
+  >
     <slot />
   </div>
 
@@ -18,7 +24,7 @@
   transform: translate(-50%, -50%) scale(0.2);
   background: var(--light-color);
   z-index: 20;
-  padding: 20px;
+  padding: 40px;
   border-radius: var(--border-radius);
   visibility: hidden;
   opacity: 0;
@@ -31,11 +37,16 @@
   }
 }
 </style>
+
 <script setup>
 const props = defineProps({
   isActive: {
     type: Boolean,
     default: false
+  },
+  bg: {
+    type: String,
+    default: '#fff'
   }
 })
 </script>

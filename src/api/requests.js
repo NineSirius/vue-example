@@ -17,3 +17,7 @@ export const getReviews = () => {
 export const getTeamList = () => {
   return strapiApi.get('teams').json()
 }
+
+export const loginUser = (data) => {
+  return strapiApi.post('auth/local', { json: data }).json()
+}
