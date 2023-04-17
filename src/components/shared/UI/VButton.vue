@@ -4,9 +4,17 @@
     class="btn"
     :class="{ [color]: color }"
     :disabled="loading"
+    v-if="variant === 'default'"
   >
     <slot v-if="!loading" />
     <v-loader v-if="loading"></v-loader>
+  </button>
+
+  <button v-else-if="variant === 'icon'" class="btn-icon">
+    <span class="icon">
+      <i :class="{ ['icon-' + icon]: true }"></i>
+    </span>
+    <span class="text"><slot></slot></span>
   </button>
 </template>
 
@@ -28,7 +36,12 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
-  }
+  },
+  variant: {
+    type: String,
+    default: 'default'
+  },
+  icon: String
 })
 
 const isActive = ref(false)
@@ -75,6 +88,31 @@ const isActive = ref(false)
     &:hover {
       background: var(--additional-color-hover);
     }
+  }
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: unset;
+  border: unset;
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+    background: #f2f2f2;
+  }
+
+  .icon {
+    font-size: 1.0625rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text {
+    line-height: 115%;
   }
 }
 </style>

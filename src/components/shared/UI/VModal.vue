@@ -21,6 +21,10 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  max-height: 100vh;
+  min-width: 30vw;
+  max-width: 100vw;
+  overflow-y: auto;
   transform: translate(-50%, -50%) scale(0.2);
   background: var(--light-color);
   z-index: 20;

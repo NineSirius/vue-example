@@ -90,6 +90,8 @@
       </div>
     </div>
 
+    <DigitalMarketing />
+
     <ReviewList></ReviewList>
   </main>
 </template>
@@ -261,4 +263,5 @@ import NumberContact from '@/components/shared/NumberContact.vue'
 import InfoWrap from '../../components/shared/InfoWrap.vue'
 import MainSponsors from '../../components/MainContent/MainSponsors.vue'
 import ReviewList from '../../components/shared/ReviewList/ReviewList.vue'
+import DigitalMarketing from '../../components/DigitalMarketing.vue'
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <span class="loader"></span>
+  <span class="loader" :class="{ style }"></span>
 </template>
 
 <style lang="scss" scoped>
@@ -14,6 +14,12 @@
   animation: rotation 1s linear infinite;
 }
 
+.page {
+  width: 150px;
+  height: 150px;
+  border: 10px solid lightgray;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -23,3 +29,9 @@
   }
 }
 </style>
+
+<script setup>
+const props = defineProps({
+  style: String
+})
+</script>

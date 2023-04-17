@@ -7,7 +7,8 @@
 }
 
 *::selection {
-  background: var(--secondary-color);
+  background: #222;
+  color: var(--light-color);
 }
 
 body {
@@ -83,4 +84,16 @@ ul {
 .overlay.active {
   visibility: visible;
   opacity: 1;
+}
+
+.link {
+  background: unset;
+  border: unset;
+  font-family: 'Open Sans';
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.link:hover {
+  cursor: pointer;
 }

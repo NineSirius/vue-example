@@ -5,6 +5,7 @@ import GalleryPage from '@/pages/GalleryPage/GalleryPage.vue'
 import AboutPage from '@/pages/AboutPage/AboutPage.vue'
 import TeamPage from '@/pages/TeamPage/TeamPage.vue'
 import ContactsPage from '@/pages/ContactsPage/ContactsPage.vue'
+import ProfilePage from '@/pages/ProfilePage/ProfilePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/contacts',
       name: 'ContactPage',
       component: ContactsPage
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: ProfilePage
     }
   ]
 })

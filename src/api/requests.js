@@ -21,3 +21,17 @@ export const getTeamList = () => {
 export const loginUser = (data) => {
   return strapiApi.post('auth/local', { json: data }).json()
 }
+
+export const registerUser = (data) => {
+  return strapiApi.post('auth/local/register', { json: data }).json()
+}
+
+export const getUserInfo = (token) => {
+  return strapiApi
+    .get('users/me?populate=*', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .json()
+}
