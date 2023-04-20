@@ -24,8 +24,33 @@
       <p>We do not charge a percentage of the purchase price, but a fixed rate.</p>
 
       <div class="product-card">
-        <div class="product-about"></div>
-        <div class="product-"></div>
+        <div class="product-about">
+          <p class="product-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip.
+          </p>
+
+          <h4 class="product-title">What's included? Absolutely everything.</h4>
+
+          <div class="product-features">
+            <ul class="features-list">
+              <li>We arrange the valuation report</li>
+              <li>Duis aute irure dolor in reprehenderit</li>
+              <li>In voluptate velit esse cillum</li>
+              <li>Excepteur sint occaecat cupidatat</li>
+              <li>Sunt in culpa qui officia deserunt</li>
+            </ul>
+            <ul class="features-list">
+              <li>We arrange the valuation report</li>
+              <li>Duis aute irure dolor in reprehenderit</li>
+              <li>In voluptate velit esse cillum</li>
+              <li>Excepteur sint occaecat cupidatat</li>
+              <li>Sunt in culpa qui officia deserunt</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-pricing"></div>
       </div>
     </div>
   </section>
@@ -88,7 +113,6 @@
 
 <script setup>
 import PageHeader from '@/components/shared/PageHeader.vue'
-import NumberContact from '@/components/shared/NumberContact.vue'
 import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
 import { ref } from 'vue'
 import InfoWrap from '../../components/shared/InfoWrap.vue'
@@ -144,6 +168,56 @@ const startedModal = ref(false)
 
 .product {
   background: var(--additional-color);
+  padding: 60px 0;
+
   text-align: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-card {
+    background: #fff;
+    color: var(--text-color) !important;
+    display: flex;
+
+    .product-about {
+      padding: 30px;
+      width: 70%;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      .product-desc {
+        color: #808080;
+        font-weight: 500;
+        line-height: 200%;
+      }
+
+      .product-title {
+        font-size: 1.875rem;
+        font-weight: 400;
+      }
+
+      .product-features {
+        display: flex;
+        justify-content: space-between;
+
+        .features-list {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+      }
+    }
+    .product-pricing {
+      padding: 30px;
+      width: 30%;
+      background: #f2f2f2;
+    }
+  }
 }
 </style>

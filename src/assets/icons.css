@@ -25,9 +25,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .icon-map-pin:before {
   content: '\e900';
+}
+.icon-check:before {
+  content: '\e90a';
 }
 .icon-sign-out:before {
   content: '\e901';
@@ -38,7 +40,7 @@
 .icon-phone:before {
   content: '\e903';
 }
-.icon-location1:before {
+.icon-location:before {
   content: '\e904';
 }
 .icon-database:before {
