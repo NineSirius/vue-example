@@ -11,6 +11,71 @@
   </section>
 
   <MainSponsors></MainSponsors>
+
+  <section
+    :style="{
+      backgroundColor: '#f2f2f2',
+      padding: '40px'
+    }"
+  >
+    <div class="container">
+      <InfoWrap>
+        <template #first-content>
+          <div class="marketing-info-wrap">
+            <div class="marketing-info-content">
+              <h2 class="title">Why you need digital marketing</h2>
+
+              <p>
+                Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. A lacus
+                vestibulum sed arcu non. Dolor magna eget est lorem ipsum dolor sit amet
+                consectetur.
+              </p>
+
+              <p>
+                Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non
+                pulvinar neque laoreet suspendisse interdum consectetur libero.
+              </p>
+
+              <v-button @click="modalIsShow = true">Read More</v-button>
+            </div>
+          </div>
+        </template>
+        <template #second-content>
+          <div class="card-wrapper">
+            <div class="card">
+              <span class="icon">
+                <i class="icon-web"></i>
+              </span>
+              <p>Sample text. Click to select the Text Element.</p>
+            </div>
+            <div class="card">
+              <span class="icon">
+                <i class="icon-web"></i>
+              </span>
+              <p>Sample text. Click to select the Text Element.</p>
+            </div>
+            <div class="card">
+              <span class="icon">
+                <i class="icon-web"></i>
+              </span>
+              <p>Sample text. Click to select the Text Element.</p>
+            </div>
+            <div class="card">
+              <span class="icon">
+                <i class="icon-web"></i>
+              </span>
+              <p>Sample text. Click to select the Text Element.</p>
+            </div>
+          </div>
+        </template>
+      </InfoWrap>
+    </div>
+
+    <v-modal :isActive="modalIsShow.value">
+      <MessageForm></MessageForm>
+    </v-modal>
+  </section>
+
   <InfoWrapItem
     title="Make your marketing more effective"
     desc="Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero."
@@ -107,6 +172,10 @@ import InfoWrapItem from '../../components/InfoWrapItem.vue'
 import NumberContact from '../../components/shared/NumberContact.vue'
 import ReviewList from '../../components/shared/ReviewList/ReviewList.vue'
 import StartCard from '../../components/StartCard.vue'
+import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
+import { ref } from 'vue'
+
+const modalIsShow = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -121,7 +190,7 @@ import StartCard from '../../components/StartCard.vue'
   height: 100%;
 }
 .card-wrapper {
-  padding: 60px 0;
+  padding: 80px 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -153,6 +222,80 @@ import StartCard from '../../components/StartCard.vue'
     p {
       color: var(--text-color);
     }
+  }
+}
+
+.marketing-info-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.marketing-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  p {
+    color: var(--text-content);
+  }
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  color: #fff;
+
+  i {
+    font-size: 32px;
+  }
+}
+
+.card:nth-child(1) {
+  .icon {
+    background: var(--primary-color);
+  }
+}
+.card:nth-child(2) {
+  .icon {
+    background: var(--secondary-color);
+  }
+}
+.card:nth-child(3) {
+  .icon {
+    background: var(--additional-color);
+  }
+}
+.card:nth-child(4) {
+  .icon {
+    background: var(--success-color);
+  }
+}
+.card:nth-child(4) {
+  .icon {
+    background: var(--success-color);
+  }
+}
+.card:nth-child(5) {
+  .icon {
+    background: var(--additional-color);
+  }
+}
+.card:nth-child(6) {
+  .icon {
+    background: var(--primary-color);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card-wrapper {
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 </style>

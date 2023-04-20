@@ -35,25 +35,33 @@
 
           <div class="product-features">
             <ul class="features-list">
-              <li>We arrange the valuation report</li>
-              <li>Duis aute irure dolor in reprehenderit</li>
-              <li>In voluptate velit esse cillum</li>
-              <li>Excepteur sint occaecat cupidatat</li>
-              <li>Sunt in culpa qui officia deserunt</li>
+              <li><i class="icon-check"></i> We arrange the valuation report</li>
+              <li><i class="icon-check"></i> Duis aute irure dolor in reprehenderit</li>
+              <li><i class="icon-check"></i> In voluptate velit esse cillum</li>
+              <li><i class="icon-check"></i> Excepteur sint occaecat cupidatat</li>
+              <li><i class="icon-check"></i> Sunt in culpa qui officia deserunt</li>
             </ul>
             <ul class="features-list">
-              <li>We arrange the valuation report</li>
-              <li>Duis aute irure dolor in reprehenderit</li>
-              <li>In voluptate velit esse cillum</li>
-              <li>Excepteur sint occaecat cupidatat</li>
-              <li>Sunt in culpa qui officia deserunt</li>
+              <li><i class="icon-check"></i> We arrange the valuation report</li>
+              <li><i class="icon-check"></i> Duis aute irure dolor in reprehenderit</li>
+              <li><i class="icon-check"></i> In voluptate velit esse cillum</li>
+              <li><i class="icon-check"></i> Excepteur sint occaecat cupidatat</li>
+              <li><i class="icon-check"></i> Sunt in culpa qui officia deserunt</li>
             </ul>
           </div>
         </div>
-        <div class="product-pricing"></div>
+        <div class="product-pricing">
+          <img src="/img/product-item-avatar.jpg" alt="picture" class="avatar" />
+          <p style="color: var(--text-color)">Always no-cure-no-pay</p>
+          <h4 class="price"><span>$</span> 2,950</h4>
+          <v-button color="secondary">Speak with us</v-button>
+          <p>No commitment · Set up in minutes</p>
+        </div>
       </div>
     </div>
   </section>
+
+  <TicketsPricing></TicketsPricing>
 
   <section
     :style="{
@@ -118,6 +126,7 @@ import { ref } from 'vue'
 import InfoWrap from '../../components/shared/InfoWrap.vue'
 import DigitalMarketing from '../../components/DigitalMarketing.vue'
 import MainSponsors from '../../components/MainContent/MainSponsors.vue'
+import TicketsPricing from '@/components/TicketsPricing/TicketsPricing.vue'
 
 const startedModal = ref(false)
 </script>
@@ -166,6 +175,12 @@ const startedModal = ref(false)
   }
 }
 
+@media screen and (max-width: 500px) {
+  .card-wrapper {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
 .product {
   background: var(--additional-color);
   padding: 60px 0;
@@ -205,19 +220,74 @@ const startedModal = ref(false)
       .product-features {
         display: flex;
         justify-content: space-between;
+        padding: 50px 0;
 
         .features-list {
           display: flex;
           flex-direction: column;
           gap: 15px;
+
+          li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
         }
       }
     }
     .product-pricing {
-      padding: 30px;
+      padding: 40px;
       width: 30%;
       background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+
+      .price {
+        font-size: 5rem;
+        color: var(--primary-color);
+
+        span {
+          font-size: 3rem;
+        }
+      }
+
+      p {
+        color: var(--text-color);
+        font-size: 1rem;
+      }
+      button {
+        align-self: center;
+      }
+
+      .avatar {
+        width: 147px;
+        height: 147px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
     }
+  }
+}
+
+@media (max-width: 870px) {
+  .product-card {
+    flex-direction: column;
+
+    .product-about,
+    .product-pricing {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .product-features {
+    flex-direction: column;
+    gap: 40px;
+    justify-content: unset;
   }
 }
 </style>

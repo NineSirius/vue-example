@@ -12,8 +12,8 @@ export const getReviews = () => {
   return strapiApi.get('reviews?populate=avatar').json()
 }
 
-export const getTeamList = () => {
-  return strapiApi.get('teams?populate=*').json()
+export const getTeamList = async () => {
+  return await strapiApi.get('teams?populate=deep').json()
 }
 
 export const loginUser = (data) => {

@@ -21,6 +21,9 @@
 </template>
 
 <style lang="scss" scoped>
+.container {
+  padding: 50px 0 !important;
+}
 .sponsors {
   display: flex;
   align-items: center;

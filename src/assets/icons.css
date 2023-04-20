@@ -25,11 +25,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .icon-map-pin:before {
   content: '\e900';
-}
-.icon-check:before {
-  content: '\e90a';
 }
 .icon-sign-out:before {
   content: '\e901';
@@ -64,9 +62,6 @@
 .icon-link:before {
   content: '\e9cb';
 }
-.icon-facebook:before {
-  content: '\f082';
-}
 .icon-google:before {
   content: '\f1a0';
 }
@@ -75,4 +70,22 @@
 }
 .icon-envelope:before {
   content: '\f003';
+}
+.icon-check:before {
+  content: '\f00c';
+}
+.icon-twitter:before {
+  content: '\f099';
+}
+.icon-facebook:before {
+  content: '\f09a';
+}
+.icon-facebook-f:before {
+  content: '\f09a';
+}
+.icon-youtube:before {
+  content: '\f16a';
+}
+.icon-instagram:before {
+  content: '\f16d';
 }

@@ -14,8 +14,8 @@
 
     <v-button @click="startedModal = true">Read More</v-button>
   </PageHeader>
-  <NumberContact style="background-color: var(--additional-color)"></NumberContact>
   <TeamList />
+  <NumberContact style="background-color: var(--additional-color)"></NumberContact>
 
   <v-modal :isActive="startedModal" @closeModal="startedModal = false">
     <MessageForm bg="#f2f2f2"></MessageForm>

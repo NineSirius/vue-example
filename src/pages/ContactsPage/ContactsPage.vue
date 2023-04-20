@@ -165,4 +165,13 @@ const startedModal = ref(false)
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .contact-data {
+    flex-wrap: wrap;
+  }
+  .card {
+    flex-grow: 2;
+  }
+}
 </style>

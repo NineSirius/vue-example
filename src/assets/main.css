@@ -47,7 +47,7 @@ ul {
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px !important;
 }
 
 .card {
@@ -96,4 +96,14 @@ ul {
 
 .link:hover {
   cursor: pointer;
+}
+
+.primary {
+  background: var(--primary-color);
+}
+.secondary {
+  background: var(--secondary-color);
+}
+.additional {
+  background: var(--additional-color);
 }

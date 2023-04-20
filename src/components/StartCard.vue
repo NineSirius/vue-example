@@ -26,7 +26,7 @@ const props = defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 40px;
+  padding: 50px 40px !important;
   width: 100%;
   gap: 40px;
   background: #f2f2f2;

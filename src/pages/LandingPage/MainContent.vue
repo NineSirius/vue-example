@@ -2,7 +2,7 @@
   <main class="main">
     <MainSponsors></MainSponsors>
 
-    <div class="info-about">
+    <section class="info-about">
       <div class="container">
         <InfoWrap>
           <template v-slot:first-content>
@@ -40,7 +40,7 @@
           </template>
         </InfoWrap>
       </div>
-    </div>
+    </section>
 
     <InfoWrapItem
       title="Make your marketing more effective"
@@ -81,24 +81,24 @@
       </div>
     </div> -->
 
-    <div class="company-stats container">
-      <div class="card">
+    <section class="company-stats container">
+      <article class="card">
         <h2 class="card-title">560k</h2>
         <p>Digital global audience reach</p>
-      </div>
-      <div class="card">
+      </article>
+      <article class="card">
         <h2 class="card-title">79%</h2>
         <p>OF THE AUDIENCE IS UNDER 34 YEARS OLD</p>
-      </div>
-      <div class="card">
+      </article>
+      <article class="card">
         <h2 class="card-title">80%</h2>
         <p>CONTENT PIECES PRODUCED EVERYDAY</p>
-      </div>
-      <div class="card">
+      </article>
+      <article class="card">
         <h2 class="card-title">1340</h2>
         <p>MARKETING STRATEGY & SEO CAMPAIGNS</p>
-      </div>
-    </div>
+      </article>
+    </section>
 
     <DigitalMarketing />
 
@@ -225,7 +225,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 370px));
   justify-content: center;
-  padding: 60px 20px;
+  padding: 60px 20px !important;
   color: var(--light-color);
   gap: 20px;
 

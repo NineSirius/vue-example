@@ -1,14 +1,18 @@
 <template>
   <div class="card">
-    <img :src="avatar" alt="Betty Nelson" />
+    <img :src="avatar" alt="Betty Nelson" class="avatar" />
     <h4 class="name">{{ fullname.firstname }} {{ fullname.lastname }}</h4>
     <span class="position">{{ position }}</span>
     <p class="desc">{{ text }}</p>
     <div class="social">
-      <a href="#">
-        <i class="icon-facebook"></i>
-        <i class="icon-twitter"></i>
-        <i class="icon-instagram"></i>
+      <a
+        :href="item.link"
+        target="_blank"
+        class="social-link"
+        v-for="item in contacts"
+        :key="item.id"
+      >
+        <i :class="`icon-${item.name}`"></i>
       </a>
     </div>
   </div>
@@ -19,7 +23,8 @@ const props = defineProps({
   fullname: Object,
   avatar: String,
   text: String,
-  position: String
+  position: String,
+  contacts: Array
 })
 </script>
 
@@ -28,7 +33,17 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   text-align: center;
+  background: #fff;
+  box-shadow: var(--box-shadow);
+
   gap: 15px;
+  .avatar {
+    width: 133px;
+    height: 133px;
+    margin: 0 auto;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 
   .name {
     text-transform: uppercase;
@@ -45,6 +60,26 @@ const props = defineProps({
 
   .desc {
     color: var(--text-color);
+    font-size: 1rem;
+  }
+
+  .social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    gap: 10px;
+
+    .social-link {
+      background: var(--additional-color);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 </style>

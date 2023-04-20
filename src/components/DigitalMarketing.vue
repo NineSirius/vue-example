@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :style="{ padding: '80px 0' }">
+  <section class="container" :style="{ padding: '80px 0 !important' }">
     <div class="title-wrap">
       <h2 class="title">Why you need digital marketing</h2>
       <p class="desc">Sample text. Click to select the Text Element.</p>
@@ -49,7 +49,7 @@
         <p>Sample text. Click to select the Text Element.</p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup></script>
