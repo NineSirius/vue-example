@@ -22,7 +22,9 @@
 
 @media (max-width: 768px) {
   .info-wrap {
-    flex-direction: column;
+    flex-direction: column !important;
+    gap: 50px;
+    text-align: center;
   }
 }
 </style>

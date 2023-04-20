@@ -56,6 +56,12 @@
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+  .review-card {
+    padding: 20px 30px;
+  }
+}
 </style>
 
 <script setup>

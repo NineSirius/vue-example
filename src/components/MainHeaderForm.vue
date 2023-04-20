@@ -1,67 +1,49 @@
 <template>
-  <header class="header">
-    <!-- <TheNavigation /> -->
+  <div class="header-content container" :style="{ color: color }">
+    <h1 class="header-title">Digital product marketing agency</h1>
 
-    <div class="container">
-      <div class="header-content container">
-        <h1 class="header-title">Digital product marketing agency</h1>
+    <p class="header-desc">
+      Delectus recteque has ne, no pro tation commodo. Ea libris utamur vix, in sumo augue soluta
+      vis.
+    </p>
 
-        <p class="header-desc">
-          Delectus recteque has ne, no pro tation commodo. Ea libris utamur vix,
-          in sumo augue soluta vis.
-        </p>
+    <form @submit.prevent="sendEmailFoo">
+      <div class="header-form">
+        <v-input
+          type="email"
+          name="email"
+          placeholder="Введите свой электронный адрес"
+          v-model="requestEmail.email"
+        />
+        <v-button :loading="requestEmail.status" type="submit">Подтвердить</v-button>
 
-        <form @submit.prevent="sendEmailFoo">
-          <div class="header-form">
-            <v-input
-              type="email"
-              name="email"
-              placeholder="Введите свой электронный адрес"
-              v-model="requestEmail.email"
-            />
-            <v-button :loading="requestEmail.status" type="submit"
-              >Подтвердить</v-button
-            >
-
-            <div
-              class="message success"
-              :class="{ active: requestEmail.isSend }"
-            >
-              <span class="close" @click="requestEmail.isSend = false"
-                >&times;</span
-              >
-              Спасибо! Ваше сообщение было отправлено.
-            </div>
-            <div
-              class="message error"
-              :class="{ active: requestEmail.isError }"
-            >
-              <span class="close" @click="requestEmail.isError = false"
-                >&times;</span
-              >
-              При отправке возникла ошибка. Попробуйте повторить запрос позже
-            </div>
-          </div>
-        </form>
-
-        <div class="header-contact-wrap">
-          <div class="phone-wrap">
-            <span class="icon">
-              <i class="icon-phone"></i>
-            </span>
-            <a href="tel:+1(234) 567-8910" class="phone">+1(234) 567-8910</a>
-          </div>
-
-          <span class="email">
-            <a href="mailto:info@sample.com">info@sample.com</a>
-          </span>
+        <div class="message success" :class="{ active: requestEmail.isSend }">
+          <span class="close" @click="requestEmail.isSend = false">&times;</span>
+          Спасибо! Ваше сообщение было отправлено.
+        </div>
+        <div class="message error" :class="{ active: requestEmail.isError }">
+          <span class="close" @click="requestEmail.isError = false">&times;</span>
+          При отправке возникла ошибка. Попробуйте повторить запрос позже
         </div>
       </div>
+    </form>
+
+    <div class="header-contact-wrap">
+      <div class="phone-wrap">
+        <span class="icon">
+          <i class="icon-phone"></i>
+        </span>
+        <a href="tel:+1(234) 567-8910" class="phone">+1(234) 567-8910</a>
+      </div>
+
+      <span class="email">
+        <a href="mailto:info@sample.com">info@sample.com</a>
+      </span>
     </div>
-  </header>
+  </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .header {
   background: url('/img/header-bg.jpg') no-repeat;
   background-position: center;
@@ -71,10 +53,14 @@
 }
 
 .header-title {
-  color: var(--light-color);
+  color: inherit;
   font-size: 3.75rem;
   font-weight: 700;
   font-family: 'Ubuntu';
+}
+
+.header-desc {
+  color: inherit;
 }
 
 .header-content {
@@ -160,7 +146,7 @@
 
     .phone {
       font-size: 2.25rem;
-      color: var(--light-color);
+      color: inherit;
       font-weight: 700;
       transition: 0.1s;
 
@@ -171,7 +157,7 @@
   }
 
   .email {
-    color: var(--light-color);
+    color: inherit;
   }
 }
 
@@ -185,12 +171,26 @@
     }
   }
 }
+
+@media screen and (max-width: 550px) {
+  .phone-wrap {
+    flex-direction: column;
+  }
+
+  .phone {
+    font-size: 1.75rem !important;
+  }
+}
 </style>
 
 <script setup>
-// import TheNavigation from './TheNavigation.vue'
 import { reactive } from 'vue'
 import { sendEmail } from '@/api/requests.js'
+
+const props = defineProps({
+  bg: String,
+  color: String
+})
 
 let requestEmail = reactive({
   email: '',

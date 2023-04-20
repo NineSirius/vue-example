@@ -6,7 +6,12 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import MessageForm from '../Forms/MessageForm/MessageForm.vue'
+
+const startedModal = ref(false)
+</script>
 
 <style lang="scss">
 .main-header {

@@ -1,12 +1,23 @@
 <template>
   <div class="input-wrap">
+    <textarea
+      :placeholder="placeholder"
+      :name="name"
+      type="textarea"
+      v-if="type === 'textarea'"
+      rows="5"
+      :required="required"
+      :style="style"
+      v-model="value"
+    ></textarea>
+
     <input
       :placeholder="placeholder"
       :name="name"
       :type="type"
       :required="required"
-      :value="value"
       v-model="value"
+      v-else
     />
   </div>
 </template>
@@ -18,12 +29,15 @@
   padding: 15px;
   width: 100%;
 
-  input {
+  input,
+  textarea {
+    font-family: 'Open Sans';
     border: unset;
     background: unset;
     outline: none;
     width: 100%;
     color: var(--text-color);
+    resize: vertical;
 
     font-size: var(--base-font-size);
     font-weight: 400;
@@ -55,7 +69,8 @@ const { modelValue } = defineProps({
     type: Boolean,
     default: false
   },
-  modelValue: String
+  modelValue: String,
+  style: Object
 })
 
 const emits = defineEmits(['update:modelValue'])

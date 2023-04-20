@@ -3,24 +3,24 @@
     <img src="/img/gallery-page-header.png" alt="Header bg" class="img" />
     <h1 class="title">Gallery</h1>
     <p>
-      Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor.
-      A lacus vestibulum sed arcu non. Dolor magna eget est lorem ipsum dolor
-      sit amet consectetur. Mauris pellentesque pulvinar pellentesque habitant
-      morbi tristique senectus.
+      Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. A lacus vestibulum
+      sed arcu non. Dolor magna eget est lorem ipsum dolor sit amet consectetur. Mauris pellentesque
+      pulvinar pellentesque habitant morbi tristique senectus.
     </p>
     <p>
-      Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet.
-      Porta non pulvinar neque laoreet suspendisse interdum consectetur libero.
+      Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar
+      neque laoreet suspendisse interdum consectetur libero.
     </p>
 
-    <v-button>Read More</v-button>
+    <v-button @click="startedModal = true">Read More</v-button>
   </PageHeader>
 
+  <v-modal :isActive="startedModal" @closeModal="startedModal = false">
+    <MessageForm bg="#f2f2f2"></MessageForm>
+  </v-modal>
+
   <div class="container gallery-wrap">
-    <lightgallery
-      :settings="{ speed: 300, plugins: [lgZoom, lgVideo] }"
-      class="gallery"
-    >
+    <lightgallery :settings="{ speed: 300, plugins: [lgZoom, lgVideo] }" class="gallery">
       <a
         class="gallery-item"
         data-src="/img/gallery-pic1.jpg"
@@ -66,9 +66,16 @@
     </lightgallery>
   </div>
 
-  <NumberContact
-    style="background-color: var(--additional-color)"
-  ></NumberContact>
+  <InfoWrapItem
+    title="Make your marketing more effective"
+    desc="Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero."
+    picture="/img/info-wrap-item.png"
+    bg="url('/img/main-header.jpg')"
+    color="#000"
+    reverse
+  ></InfoWrapItem>
+
+  <NumberContact style="background-color: var(--additional-color)"></NumberContact>
 </template>
 
 <style lang="scss" scoped>
@@ -105,6 +112,12 @@ import Lightgallery from 'lightgallery/vue'
 import lgZoom from 'lightgallery/plugins/zoom'
 import lgVideo from 'lightgallery/plugins/video'
 import NumberContact from '@/components/shared/NumberContact.vue'
+import InfoWrapItem from '../../components/InfoWrapItem.vue'
+
+import { ref } from 'vue'
+import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
+
+const startedModal = ref(false)
 
 // const onInit = () => {
 //   console.log('lightGallery has been initialized')

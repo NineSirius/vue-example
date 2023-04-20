@@ -10,8 +10,8 @@
               <img
                 src="/img/info-img.png"
                 alt="landing info image"
-                class="info-items-img"
-                style="width: 80%"
+                class="info-item-img"
+                style="width: 80%; align-self: center"
               />
             </div>
           </template>
@@ -42,34 +42,44 @@
       </div>
     </div>
 
-    <div class="info-about-2">
+    <InfoWrapItem
+      title="Make your marketing more effective"
+      desc="Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero"
+      picture="/img/info-img2.png"
+      color="#fff"
+      btnColor="secondary"
+      bg="var(--additional-color)"
+    >
+    </InfoWrapItem>
+    <StartCard
+      title="Convert more customers and grow more revenue now"
+      bg="var(--additional-color)"
+    ></StartCard>
+
+    <!-- <div class="info-about-2">
       <div class="container">
         <InfoWrap>
           <template v-slot:first-content>
             <div class="info-content">
               <h2 class="info-title">Make your marketing more effective</h2>
+
               <p class="info-description">
-                Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus
-                sit amet. Porta non pulvinar neque laoreet suspendisse interdum
-                consectetur libero.
+                Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non
+                pulvinar neque laoreet suspendisse interdum consectetur libero.
               </p>
               <v-button color="secondary">Подтвердить</v-button>
             </div>
           </template>
           <template v-slot:second-content>
             <div class="info-img-wrap">
-              <img
-                src="/img/info-img2.png"
-                alt="landing info image"
-                class="info-items-img"
-              />
+              <img src="/img/info-img2.png" alt="landing info image" class="info-item-img" />
             </div>
           </template>
         </InfoWrap>
 
         <NumberContact></NumberContact>
       </div>
-    </div>
+    </div> -->
 
     <div class="company-stats container">
       <div class="card">
@@ -91,6 +101,14 @@
     </div>
 
     <DigitalMarketing />
+
+    <MessageFormWrap
+      picture="/img/message-form-item.png"
+      bg="var(--secondary-color)"
+      color="#fff"
+    />
+
+    <NumberContact color="var(--secondary-color)"></NumberContact>
 
     <ReviewList></ReviewList>
   </main>
@@ -114,7 +132,7 @@
 
   align-items: center;
 }
-.info-items-img {
+.info-item-img {
   width: 70% !important;
   align-self: center;
 }
@@ -264,4 +282,8 @@ import InfoWrap from '../../components/shared/InfoWrap.vue'
 import MainSponsors from '../../components/MainContent/MainSponsors.vue'
 import ReviewList from '../../components/shared/ReviewList/ReviewList.vue'
 import DigitalMarketing from '../../components/DigitalMarketing.vue'
+// import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
+import MessageFormWrap from '../../components/Forms/MessageForm/MessageFormWrap.vue'
+import InfoWrapItem from '../../components/InfoWrapItem.vue'
+import StartCard from '../../components/StartCard.vue'
 </script>

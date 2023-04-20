@@ -1028,6 +1028,11 @@ sourcemap-codec@^1.4.8:
   resolved "https://registry.npmjs.org/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
 
+ssr-window@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/ssr-window/-/ssr-window-4.0.2.tgz"
+  integrity sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==
+
 strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
@@ -1051,6 +1056,13 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swiper@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.npmjs.org/swiper/-/swiper-9.2.3.tgz"
+  integrity sha512-hxqcjIsYPP1fv+KIXPqGywl6ik8RBp0y0i9+TOIh55ca6SpZ5FrgNJ4QXPhsl6mlSBMEYPmh5zOKtZpI8zpWeQ==
+  dependencies:
+    ssr-window "^4.0.2"
 
 text-table@^0.2.0:
   version "0.2.0"

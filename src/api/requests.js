@@ -5,9 +5,7 @@ const strapiApi = ky.create({
 })
 
 export const sendEmail = (data) => {
-  return strapiApi
-    .post('requests?populate', { json: { data: { email: data } } })
-    .json()
+  return strapiApi.post('requests?populate', { json: { data: { email: data } } }).json()
 }
 
 export const getReviews = () => {
@@ -15,7 +13,7 @@ export const getReviews = () => {
 }
 
 export const getTeamList = () => {
-  return strapiApi.get('teams').json()
+  return strapiApi.get('teams?populate=*').json()
 }
 
 export const loginUser = (data) => {
@@ -31,6 +29,16 @@ export const getUserInfo = (token) => {
     .get('users/me?populate=*', {
       headers: {
         Authorization: `Bearer ${token}`
+      }
+    })
+    .json()
+}
+
+export const sendMessageData = (data) => {
+  return strapiApi
+    .post('messages', {
+      json: {
+        data
       }
     })
     .json()

@@ -1,34 +1,29 @@
 <template>
-  <PageHeader>
-    <img src="/img/about-page-header.png" alt="image" />
-    <h1 class="title">About Us</h1>
-    <p>
-      Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. A lacus vestibulum
-      sed arcu non. Dolor magna eget est lorem ipsum dolor sit amet consectetur. Mauris pellentesque
-      pulvinar pellentesque habitant morbi tristique senectus.
-    </p>
-    <p>
-      Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar
-      neque laoreet suspendisse interdum consectetur libero.
-    </p>
-
-    <v-button @click="startedModal = true">Read More</v-button>
-  </PageHeader>
-  <MainSponsors></MainSponsors>
-
-  <DigitalMarketing></DigitalMarketing>
-
-  <section class="product">
-    <div class="container" style="color: #fff">
-      <h2 class="title" style="color: inherit">Discover, Explore the Product</h2>
-      <p>We do not charge a percentage of the purchase price, but a fixed rate.</p>
-
-      <div class="product-card">
-        <div class="product-about"></div>
-        <div class="product-"></div>
-      </div>
-    </div>
+  <section class="container">
+    <InfoWrap style="align-items: center">
+      <template #first-content>
+        <img src="/img/contacts-page-header.png" alt="picture" style="width: 90% !important" />
+      </template>
+      <template #second-content>
+        <MainHeaderForm color="#000 "></MainHeaderForm>
+      </template>
+    </InfoWrap>
   </section>
+
+  <MainSponsors></MainSponsors>
+  <InfoWrapItem
+    title="Make your marketing more effective"
+    desc="Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero."
+    picture="/img/info-wrap-item.png"
+    bg="url('/img/main-header.jpg')"
+    color="#000"
+    reverse
+  ></InfoWrapItem>
+
+  <StartCard
+    title="Convert more customers and grow more revenue now"
+    bg="var(--additional-color)"
+  ></StartCard>
 
   <section
     :style="{
@@ -81,24 +76,43 @@
       </InfoWrap>
     </div>
   </section>
-  <v-modal :isActive="startedModal" @closeModal="startedModal = false">
-    <MessageForm bg="#f2f2f2"></MessageForm>
-  </v-modal>
+
+  <!-- <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div> -->
+
+  <DigitalMarketing></DigitalMarketing>
+
+  <NumberContact color="var(--secondary-color)"></NumberContact>
+
+  <ReviewList></ReviewList>
+
+  <!-- <MainHeaderForm></MainHeaderForm> -->
 </template>
 
 <script setup>
-import PageHeader from '@/components/shared/PageHeader.vue'
-import NumberContact from '@/components/shared/NumberContact.vue'
-import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
-import { ref } from 'vue'
-import InfoWrap from '../../components/shared/InfoWrap.vue'
 import DigitalMarketing from '../../components/DigitalMarketing.vue'
 import MainSponsors from '../../components/MainContent/MainSponsors.vue'
-
-const startedModal = ref(false)
+import MainHeaderForm from '../../components/MainHeaderForm.vue'
+import InfoWrap from '../../components/shared/InfoWrap.vue'
+import InfoWrapItem from '../../components/InfoWrapItem.vue'
+import NumberContact from '../../components/shared/NumberContact.vue'
+import ReviewList from '../../components/shared/ReviewList/ReviewList.vue'
+import StartCard from '../../components/StartCard.vue'
 </script>
 
 <style lang="scss" scoped>
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-video.css');
 .img-wrap {
   display: flex;
   justify-content: center;
@@ -140,10 +154,5 @@ const startedModal = ref(false)
       color: var(--text-color);
     }
   }
-}
-
-.product {
-  background: var(--additional-color);
-  text-align: center;
 }
 </style>

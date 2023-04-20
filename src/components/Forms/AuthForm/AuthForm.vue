@@ -26,11 +26,11 @@
         ></auth-input>
       </div>
 
-      <div class="social-login">
+      <!-- <div class="social-login">
         <span class="google"><i class="icon-google"></i></span>
         <span class="vk"><i class="icon-vk"></i></span>
         <span class="telegram"><i class="icon-telegram"></i></span>
-      </div>
+      </div> -->
 
       <v-button style="align-self: center; width: 100%" type="submit">Войти</v-button>
       <center>
@@ -85,11 +85,11 @@
         </div>
       </div>
 
-      <div class="social-login">
+      <!-- <div class="social-login">
         <span class="google"><i class="icon-google"></i></span>
         <span class="vk"><i class="icon-vk"></i></span>
         <span class="telegram"><i class="icon-telegram"></i></span>
-      </div>
+      </div> -->
 
       <v-button style="align-self: center; width: 100%" type="submit">Войти</v-button>
 

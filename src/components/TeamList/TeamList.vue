@@ -1,11 +1,32 @@
 <template>
   <div class="team-list">
-    <div class="team-card" v-for="item in data.data" :key="item.id">
-      <!-- <img :src="item.attributes.avatar.data.attributes.url" alt="avatar" /> -->
-      <h2>hello world</h2>
-    </div>
+    <TeamListCard
+      v-for="item in data.data"
+      :key="item.id"
+      :fullname="{ firstname: item.attributes.firstname, lastname: item.attributes.lastname }"
+      :text="item.attributes.about"
+      :avatar="item.attributes.avatar.data.attributes.url"
+      position="Лошарик"
+    ></TeamListCard>
   </div>
 </template>
+
+<script setup>
+import { reactive } from 'vue'
+import { getTeamList } from '../../api/requests'
+import TeamListCard from './TeamListCard.vue'
+
+let data = reactive({
+  data: null
+})
+
+getTeamList()
+  .then((resp) => {
+    console.log(resp)
+    data = resp
+  })
+  .catch((err) => console.log(err))
+</script>
 
 <style lang="scss" scoped>
 .team-list {
@@ -14,18 +35,3 @@
   gap: 20px;
 }
 </style>
-
-<script setup>
-import { reactive } from 'vue'
-import { getTeamList } from '../../api/requests'
-
-let data = reactive({
-  data: []
-})
-
-getTeamList()
-  .then((resp) => {
-    data = resp
-  })
-  .catch((err) => console.log(err))
-</script>

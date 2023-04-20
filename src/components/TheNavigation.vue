@@ -2,17 +2,21 @@
   <div class="container">
     <div class="navbar">
       <ul class="nav-links" :class="{ active: mobileNav.isActive }">
-        <li><RouterLink to="/" class="nav-link">Главная</RouterLink></li>
-        <li><RouterLink to="/landing" class="nav-link">Лендинг</RouterLink></li>
-        <li><RouterLink to="/about" class="nav-link">О нас</RouterLink></li>
-        <li><RouterLink to="/team" class="nav-link">Команда</RouterLink></li>
-        <li><RouterLink to="/gallery" class="nav-link">Галерея</RouterLink></li>
+        <li><RouterLink to="/" activeClass="active" class="nav-link">Главная</RouterLink></li>
         <li>
-          <RouterLink to="/contacts" class="nav-link">Контакты</RouterLink>
+          <RouterLink to="/landing" activeClass="active" class="nav-link">Лендинг</RouterLink>
+        </li>
+        <li><RouterLink to="/about" activeClass="active" class="nav-link">О нас</RouterLink></li>
+        <li><RouterLink to="/team" activeClass="active" class="nav-link">Команда</RouterLink></li>
+        <li>
+          <RouterLink to="/gallery" activeClass="active" class="nav-link">Галерея</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/contacts" activeClass="active" class="nav-link">Контакты</RouterLink>
         </li>
       </ul>
 
-      <button class="hamburger hamburger--slider" type="button" @click.stop="switchIsActive">
+      <button class="hamburger hamburger--slider" type="button" @click="switchIsActive">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
@@ -55,6 +59,7 @@
 </template>
 
 <style scoped lang="scss">
+@import url('@/assets/hamburger.css');
 .navbar {
   display: flex;
   align-items: center;
@@ -69,7 +74,11 @@
       font-weight: 400;
       font-size: 1rem;
       &.active {
-        color: var(--link-color);
+        color: var(--primary-color);
+      }
+
+      &:hover {
+        color: var(--secondary-color);
       }
     }
   }
@@ -182,24 +191,35 @@
 
 @media (max-width: 640px) {
   .nav-links {
-    width: 40vw;
+    width: 50vw !important;
+    max-width: 50vw;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 380px) {
   .nav-links {
-    width: 100vw;
+    width: 100vw !important;
   }
 }
 </style>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import AuthForm from '@/components/Forms/AuthForm/AuthForm.vue'
 import Cookie from 'js-cookie'
 import router from '../router'
 import { getUserInfo } from '../api/requests'
+
+watch(router.currentRoute, () => {
+  mobileNav.isActive = false
+
+  console.log(router.currentRoute.value.fullPath)
+})
 
 const userInfo = reactive({
   username: '',
@@ -214,14 +234,12 @@ const logout = () => {
 
 let profileIsShow = ref(false)
 
-document.body.addEventListener('click', (e) => {
-  console.log(e.target.classList)
-})
+// document.body.addEventListener('click', (e) => {
+//   console.log(e.target.classList)
+// })
 
 const switchIsActive = () => {
   mobileNav.isActive = !mobileNav.isActive
-  mobileNav.isActive && document.body.classList.add('fixed')
-  !mobileNav.isActive && document.body.classList.add('fixed')
 }
 
 const isAuthenticated = ref(Cookie.get('token') || false)
@@ -238,6 +256,13 @@ if (isAuthenticated.value) {
 const mobileNav = reactive({
   default: 'navbar',
   isActive: false
+})
+
+watch(mobileNav.isActive, () => {
+  console.log('changed')
+  mobileNav.isActive
+    ? document.body.classList.add('fixed')
+    : document.body.classList.remove('fixed')
 })
 
 const authModal = ref(false)

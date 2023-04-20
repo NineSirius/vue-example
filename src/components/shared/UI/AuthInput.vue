@@ -26,9 +26,7 @@
         v-model="value"
       />
 
-      <span
-        class="placeholder"
-        :class="{ active: showPassword && value !== '' }"
+      <span class="placeholder" :class="{ active: showPassword && value !== '' }"
         >{{ placeholder }} {{ required && '*' }}</span
       >
     </div>
@@ -42,9 +40,7 @@
   </label>
 
   <div class="password-confirmation" v-else-if="type === 'passwordWithConfirm'">
-    <span class="message" v-if="value !== confirmValue"
-      >Пароли не совпадают</span
-    >
+    <span class="message" v-if="value !== confirmValue">Пароли не совпадают</span>
     <label>
       <div class="input-wrap">
         <input
@@ -53,10 +49,7 @@
           :required="required"
           v-model="value"
         />
-        <span
-          class="placeholder"
-          :class="{ active: showPassword && value !== '' }"
-        >
+        <span class="placeholder" :class="{ active: showPassword && value !== '' }">
           Введите пароль {{ required && '*' }}</span
         >
       </div>
@@ -69,9 +62,7 @@
           :required="required"
           v-model="confirmValue"
         />
-        <span
-          class="placeholder"
-          :class="{ active: showPassword && value !== '' }"
+        <span class="placeholder" :class="{ active: showPassword && value !== '' }"
           >Повторите пароль {{ required && '*' }}</span
         >
       </div>

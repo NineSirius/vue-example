@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :style="{ padding: '80px 0' }">
     <div class="title-wrap">
       <h2 class="title">Why you need digital marketing</h2>
       <p class="desc">Sample text. Click to select the Text Element.</p>
@@ -56,7 +56,7 @@
 
 <style lang="scss" scoped>
 .title-wrap {
-  padding: 40px 0;
+  padding: 40px 0 !important;
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -9,11 +9,7 @@
     <slot />
   </div>
 
-  <div
-    class="overlay"
-    :class="{ active: isActive }"
-    @click="$emit('closeModal')"
-  ></div>
+  <div class="overlay" :class="{ active: isActive }" @click="$emit('closeModal')"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -23,7 +19,7 @@
   left: 50%;
   max-height: 100vh;
   min-width: 30vw;
-  max-width: 100vw;
+  max-width: 600px !important;
   overflow-y: auto;
   transform: translate(-50%, -50%) scale(0.2);
   background: var(--light-color);
@@ -38,6 +34,13 @@
     visibility: visible;
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 972px) {
+  .modal {
+    min-width: 50vw;
+    max-width: 100vw !important;
   }
 }
 </style>

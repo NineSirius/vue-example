@@ -6,6 +6,7 @@ import AboutPage from '@/pages/AboutPage/AboutPage.vue'
 import TeamPage from '@/pages/TeamPage/TeamPage.vue'
 import ContactsPage from '@/pages/ContactsPage/ContactsPage.vue'
 import ProfilePage from '@/pages/ProfilePage/ProfilePage.vue'
+import HomePage from '@/pages/HomePage/HomePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +14,7 @@ const router = createRouter({
     {
       path: '/',
       name: '/',
-      component: LandingPage
+      component: HomePage
     },
     {
       path: '/landing',

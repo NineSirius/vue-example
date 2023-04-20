@@ -2,15 +2,10 @@
   <div class="container" v-if="userInfo.status === 'authorizined'">
     <h2 class="title">Профиль</h2>
     <div class="user-info-wrap">
-      <img
-        :src="userInfo.avatar || '/img/base-avatar.png'"
-        alt=""
-        class="avatar"
-      />
+      <img :src="userInfo.avatar || '/img/base-avatar.png'" alt="" class="avatar" />
 
       <div class="user-info">
         <h4 class="username">{{ userInfo.username }}</h4>
-        
       </div>
     </div>
   </div>
