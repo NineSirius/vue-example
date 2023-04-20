@@ -15,7 +15,7 @@
               <li>Band Performance</li>
               <li>Day-Night Experience</li>
             </ul>
-            <v-button>Buy ticket</v-button>
+            <v-button @click="modalIsShow = true">Buy ticket</v-button>
           </div>
         </div>
         <div class="ticket-card">
@@ -30,7 +30,7 @@
               <li>Band Performance</li>
               <li>Day-Night Experience</li>
             </ul>
-            <v-button>Buy ticket</v-button>
+            <v-button @click="modalIsShow = true">Buy ticket</v-button>
           </div>
         </div>
         <div class="ticket-card">
@@ -45,15 +45,24 @@
               <li>Band Performance</li>
               <li>Day-Night Experience</li>
             </ul>
-            <v-button>Buy ticket</v-button>
+            <v-button @click="modalIsShow = true">Buy ticket</v-button>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <v-modal :isActive="modalIsShow" @closeModal="modalIsShow = false">
+    <MessageForm></MessageForm>
+  </v-modal>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import MessageForm from '../Forms/MessageForm/MessageForm.vue'
+
+const modalIsShow = ref(false)
+</script>
 
 <style lang="scss" scoped>
 .ticket-wrap {

@@ -3,12 +3,19 @@
     <div class="card container">
       <h2 class="title">{{ title }}</h2>
 
-      <v-button style="align-self: center" @click="$emit('cardSubmit')">Начать</v-button>
+      <v-button style="align-self: center" @click="modalIsShow = true">Начать</v-button>
     </div>
   </section>
+
+  <v-modal :isActive="modalIsShow" @closeModal="modalIsShow = false">
+    <MessageForm></MessageForm>
+  </v-modal>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import MessageForm from './Forms/MessageForm/MessageForm.vue'
+
 const props = defineProps({
   title: String,
   bg: {
@@ -16,6 +23,8 @@ const props = defineProps({
     default: 'var(--primary-color)'
   }
 })
+
+const modalIsShow = ref(false)
 </script>
 
 <style lang="scss" scoped>

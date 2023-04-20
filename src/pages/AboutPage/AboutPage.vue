@@ -54,7 +54,7 @@
           <img src="/img/product-item-avatar.jpg" alt="picture" class="avatar" />
           <p style="color: var(--text-color)">Always no-cure-no-pay</p>
           <h4 class="price"><span>$</span> 2,950</h4>
-          <v-button color="secondary">Speak with us</v-button>
+          <v-button color="secondary" @click="startedModal = true">Speak with us</v-button>
           <p>No commitment · Set up in minutes</p>
         </div>
       </div>

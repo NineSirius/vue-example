@@ -18,7 +18,7 @@
       padding: '40px'
     }"
   >
-    <div class="container">
+    <section class="container">
       <InfoWrap>
         <template #first-content>
           <div class="marketing-info-wrap">
@@ -69,12 +69,11 @@
           </div>
         </template>
       </InfoWrap>
-    </div>
-
-    <v-modal :isActive="modalIsShow.value">
-      <MessageForm></MessageForm>
-    </v-modal>
+    </section>
   </section>
+  <v-modal :isActive="modalIsShow" @closeModal="modalIsShow = false">
+    <MessageForm></MessageForm>
+  </v-modal>
 
   <InfoWrapItem
     title="Make your marketing more effective"

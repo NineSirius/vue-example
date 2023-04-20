@@ -82,6 +82,3 @@ const components = {
   }
 }
 </style>
-
-
-return String(Array.from(str).reverse)

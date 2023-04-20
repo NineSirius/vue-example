@@ -23,9 +23,15 @@
       <slot></slot>
     </div>
   </div>
+
+  <v-modal :isActive="startedModal" @closeModal="startedModal = false">
+    <MessageForm bg="#f2f2f2"></MessageForm>
+  </v-modal>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import MessageForm from './Forms/MessageForm/MessageForm.vue'
 import InfoWrap from './shared/InfoWrap.vue'
 
 const props = defineProps({
@@ -44,6 +50,8 @@ const props = defineProps({
     default: 'primary'
   }
 })
+
+const startedModal = ref(false)
 </script>
 
 <style lang="scss" scoped>

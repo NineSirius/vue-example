@@ -74,6 +74,9 @@
 .icon-check:before {
   content: '\f00c';
 }
+.icon-cross:before {
+  content: '\f00d';
+}
 .icon-twitter:before {
   content: '\f099';
 }
@@ -83,7 +86,7 @@
 .icon-facebook-f:before {
   content: '\f09a';
 }
-.icon-youtube:before {
+.icon-youtube-play:before {
   content: '\f16a';
 }
 .icon-instagram:before {
