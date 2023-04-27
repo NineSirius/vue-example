@@ -10,8 +10,18 @@ import MainFooter from './components/MainFooter.vue'
     <!-- <MainHeader></MainHeader> -->
     <!-- <MainContent></MainContent> -->
 
-    <RouterView></RouterView>
-
+    <main class="content"><RouterView></RouterView></main>
     <MainFooter></MainFooter>
   </div>
 </template>
+
+<style lang="scss">
+.wrapper {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  min-height: calc(100vh - 250px);
+}
+</style>

@@ -12,7 +12,7 @@
 <style scoped>
 .footer {
   width: 100%;
-  min-height: 200px;
+  padding: 70px;
   background-color: #333333;
   display: flex;
   flex-direction: column;

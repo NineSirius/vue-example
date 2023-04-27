@@ -92,3 +92,6 @@
 .icon-instagram:before {
   content: '\f16d';
 }
+.icon-admin:before {
+  content: '\e992';
+}

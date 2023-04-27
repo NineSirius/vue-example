@@ -1,122 +1,149 @@
 <template>
-  <PageHeader>
-    <img src="/img/about-page-header.png" alt="image" />
-    <h1 class="title">About Us</h1>
-    <p>
-      Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. A lacus vestibulum
-      sed arcu non. Dolor magna eget est lorem ipsum dolor sit amet consectetur. Mauris pellentesque
-      pulvinar pellentesque habitant morbi tristique senectus.
-    </p>
-    <p>
-      Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar
-      neque laoreet suspendisse interdum consectetur libero.
-    </p>
+  <div v-if="AboutPageStore.AboutPage">
+    <PageHeader>
+      <img src="/img/about-page-header.png" alt="image" />
+      <h1 class="title">{{ AboutPageStore.AboutPage.page_header.title }}</h1>
+      <p>
+        {{ AboutPageStore.AboutPage.page_header.description }}
+      </p>
+      <p>
+        {{ AboutPageStore.AboutPage.page_header.description2 }}
+      </p>
 
-    <v-button @click="startedModal = true">Read More</v-button>
-  </PageHeader>
-  <MainSponsors></MainSponsors>
+      <v-button @click="startedModal = true">Read More</v-button>
+    </PageHeader>
+    <MainSponsors></MainSponsors>
 
-  <DigitalMarketing></DigitalMarketing>
+    <DigitalMarketing></DigitalMarketing>
 
-  <section class="product">
-    <div class="container" style="color: #fff">
-      <h2 class="title" style="color: inherit">Discover, Explore the Product</h2>
-      <p>We do not charge a percentage of the purchase price, but a fixed rate.</p>
+    <section class="product">
+      <div class="container" style="color: #fff">
+        <h2 class="title" style="color: inherit">
+          {{ AboutPageStore.AboutPage.product_info.wrap_title }}
+        </h2>
+        <p>{{ AboutPageStore.AboutPage.product_info.wrap_desc }}</p>
 
-      <div class="product-card">
-        <div class="product-about">
-          <p class="product-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip.
-          </p>
+        <div class="product-card">
+          <div class="product-about">
+            <p class="product-desc">
+              {{ AboutPageStore.AboutPage.product_info.about_product }}
+            </p>
 
-          <h4 class="product-title">What's included? Absolutely everything.</h4>
+            <h4 class="product-title">{{ AboutPageStore.AboutPage.product_info.about_product }}</h4>
 
-          <div class="product-features">
-            <ul class="features-list">
-              <li><i class="icon-check"></i> We arrange the valuation report</li>
-              <li><i class="icon-check"></i> Duis aute irure dolor in reprehenderit</li>
-              <li><i class="icon-check"></i> In voluptate velit esse cillum</li>
-              <li><i class="icon-check"></i> Excepteur sint occaecat cupidatat</li>
-              <li><i class="icon-check"></i> Sunt in culpa qui officia deserunt</li>
-            </ul>
-            <ul class="features-list">
-              <li><i class="icon-check"></i> We arrange the valuation report</li>
-              <li><i class="icon-check"></i> Duis aute irure dolor in reprehenderit</li>
-              <li><i class="icon-check"></i> In voluptate velit esse cillum</li>
-              <li><i class="icon-check"></i> Excepteur sint occaecat cupidatat</li>
-              <li><i class="icon-check"></i> Sunt in culpa qui officia deserunt</li>
-            </ul>
+            <div class="product-features">
+              <ul class="features-list">
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature1 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature2 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature3 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature4 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature5 }}
+                </li>
+              </ul>
+              <ul class="features-list">
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature6 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature7 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature8 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i
+                  >{{ AboutPageStore.AboutPage.product_info.product_features.feature9 }}
+                </li>
+                <li>
+                  <i class="icon-check"></i>
+                  {{ AboutPageStore.AboutPage.product_info.product_features.feature10 }}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="product-pricing">
-          <img src="/img/product-item-avatar.jpg" alt="picture" class="avatar" />
-          <p style="color: var(--text-color)">Always no-cure-no-pay</p>
-          <h4 class="price"><span>$</span> 2,950</h4>
-          <v-button color="secondary" @click="startedModal = true">Speak with us</v-button>
-          <p>No commitment · Set up in minutes</p>
+          <div class="product-pricing">
+            <img
+              :src="
+                AboutPageStore.AboutPage.product_info.product_price_info.image.data.attributes.url
+              "
+              alt="picture"
+              class="avatar"
+            />
+            <p style="color: var(--text-color)">
+              {{ AboutPageStore.AboutPage.product_info.product_price_info.quote }}
+            </p>
+            <h4 class="price">
+              <span>$</span> {{ AboutPageStore.AboutPage.product_info.product_price_info.price }}
+            </h4>
+            <v-button color="secondary" @click="startedModal = true">{{
+              AboutPageStore.AboutPage.product_info.product_price_info.btn_text
+            }}</v-button>
+            <p>{{ AboutPageStore.AboutPage.product_info.product_price_info.quote2 }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <TicketsPricing></TicketsPricing>
+    <TicketsPricing></TicketsPricing>
 
-  <section
-    :style="{
-      backgroundColor: '#f2f2f2'
-    }"
-  >
-    <div class="container">
-      <InfoWrap>
-        <template #first-content>
-          <div class="card-wrapper">
-            <div class="card">
-              <h4
-                :style="{ fontSize: '3.75rem', color: 'var(--secondary-color)', fontWeight: '700' }"
+    <section
+      :style="{
+        backgroundColor: '#f2f2f2'
+      }"
+    >
+      <div class="container">
+        <InfoWrap>
+          <template #first-content>
+            <div class="card-wrapper">
+              <div
+                class="card"
+                v-for="item in AboutPageStore.AboutPage.about_stats.about_stats_items"
+                :key="item.id"
               >
-                560k
-              </h4>
-              <p>Sample text. Click to select the Text Element.</p>
+                <h4
+                  :style="{
+                    fontSize: '3.75rem',
+                    color: 'var(--secondary-color)',
+                    fontWeight: '700'
+                  }"
+                >
+                  {{ item.title }}
+                </h4>
+                <p>{{ item.description }}.</p>
+              </div>
             </div>
-            <div class="card">
-              <h4
-                :style="{ fontSize: '3.75rem', color: 'var(--secondary-color)', fontWeight: '700' }"
-              >
-                79%
-              </h4>
-              <p>Sample text. Click to select the Text Element.</p>
+          </template>
+          <template #second-content>
+            <div class="img-wrap">
+              <img src="/img/team-page-header.png" alt="picture" style="width: 80%" />
             </div>
-            <div class="card">
-              <h4
-                :style="{ fontSize: '3.75rem', color: 'var(--secondary-color)', fontWeight: '700' }"
-              >
-                80%
-              </h4>
-              <p>Sample text. Click to select the Text Element.</p>
-            </div>
-            <div class="card">
-              <h4
-                :style="{ fontSize: '3.75rem', color: 'var(--secondary-color)', fontWeight: '700' }"
-              >
-                1340
-              </h4>
-              <p>Sample text. Click to select the Text Element.</p>
-            </div>
-          </div>
-        </template>
-        <template #second-content>
-          <div class="img-wrap">
-            <img src="/img/team-page-header.png" alt="picture" style="width: 80%" />
-          </div>
-        </template>
-      </InfoWrap>
-    </div>
-  </section>
-  <v-modal :isActive="startedModal" @closeModal="startedModal = false">
-    <MessageForm bg="#f2f2f2"></MessageForm>
-  </v-modal>
+          </template>
+        </InfoWrap>
+      </div>
+    </section>
+    <v-modal :isActive="startedModal" @closeModal="startedModal = false">
+      <MessageForm bg="#f2f2f2"></MessageForm>
+    </v-modal>
+  </div>
+
+  <div v-else>Loading</div>
 </template>
 
 <script setup>
@@ -127,8 +154,19 @@ import InfoWrap from '../../components/shared/InfoWrap.vue'
 import DigitalMarketing from '../../components/DigitalMarketing.vue'
 import MainSponsors from '../../components/MainContent/MainSponsors.vue'
 import TicketsPricing from '@/components/TicketsPricing/TicketsPricing.vue'
+import { usePageStore } from '../../store/pageStore'
+import { getPageInfo } from '@/api/requests.js'
 
 const startedModal = ref(false)
+const AboutPageStore = usePageStore()
+
+if (!AboutPageStore.AboutPage) {
+  getPageInfo('about').then((resp) => {
+    console.log(resp)
+    console.log(resp)
+    AboutPageStore.changeState('AboutPage', resp.data.attributes)
+  })
+}
 </script>
 
 <style lang="scss" scoped>

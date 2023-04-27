@@ -173,8 +173,10 @@ import ReviewList from '../../components/shared/ReviewList/ReviewList.vue'
 import StartCard from '../../components/StartCard.vue'
 import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
 import { ref } from 'vue'
+import { usePageStore } from '../../store/pageStore'
 
 const modalIsShow = ref(false)
+const PagesStore = usePageStore()
 </script>
 
 <style lang="scss" scoped>

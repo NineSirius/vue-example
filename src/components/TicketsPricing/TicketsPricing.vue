@@ -3,49 +3,23 @@
     <div class="container">
       <h2 class="title">Ticket Pricing</h2>
       <div class="cards">
-        <div class="ticket-card">
-          <h2 class="primary">Basic</h2>
+        <div
+          class="ticket-card"
+          v-for="item in pageStore.AboutPage.product_info.product1"
+          :key="item.id"
+        >
+          <h2 class="primary">{{ item.product_title }}</h2>
 
           <div class="ticket-card-content">
-            <h4 class="price">$ 39.99</h4>
+            <h4 class="price">$ {{ item.product_price }}</h4>
             <ul>
-              <li>Person Entrance</li>
-              <li>Person Launch</li>
-              <li>Hours Everyday</li>
-              <li>Band Performance</li>
-              <li>Day-Night Experience</li>
+              <li>{{ item.product_feature }}</li>
+              <li>{{ item.product_feature2 }}</li>
+              <li>{{ item.product_feature3 }}</li>
+              <li>{{ item.product_feature4 }}</li>
+              <li>{{ item.product_feature5 }}</li>
             </ul>
-            <v-button @click="modalIsShow = true">Buy ticket</v-button>
-          </div>
-        </div>
-        <div class="ticket-card">
-          <h2 class="secondary">Standart</h2>
-
-          <div class="ticket-card-content">
-            <h4 class="price">$ 59.99</h4>
-            <ul>
-              <li>Person Entrance</li>
-              <li>Person Launch</li>
-              <li>Hours Everyday</li>
-              <li>Band Performance</li>
-              <li>Day-Night Experience</li>
-            </ul>
-            <v-button @click="modalIsShow = true">Buy ticket</v-button>
-          </div>
-        </div>
-        <div class="ticket-card">
-          <h2 class="additional">Premium</h2>
-
-          <div class="ticket-card-content">
-            <h4 class="price">$ 79.99</h4>
-            <ul>
-              <li>Person Entrance</li>
-              <li>Person Launch</li>
-              <li>Hours Everyday</li>
-              <li>Band Performance</li>
-              <li>Day-Night Experience</li>
-            </ul>
-            <v-button @click="modalIsShow = true">Buy ticket</v-button>
+            <v-button @click="modalIsShow = true">{{ item.product_btn_text }}</v-button>
           </div>
         </div>
       </div>
@@ -60,8 +34,11 @@
 <script setup>
 import { ref } from 'vue'
 import MessageForm from '../Forms/MessageForm/MessageForm.vue'
+import { usePageStore } from '../../store/pageStore'
 
 const modalIsShow = ref(false)
+
+const pageStore = usePageStore()
 </script>
 
 <style lang="scss" scoped>
@@ -94,6 +71,21 @@ const modalIsShow = ref(false)
       padding: 40px 0;
       font-size: 3rem;
       color: #fff;
+
+      &:nth-child(1) {
+        background: var(--primary-color);
+      }
+    }
+
+    &:nth-child(2) {
+      h2 {
+        background: var(--secondary-color);
+      }
+    }
+    &:nth-child(3) {
+      h2 {
+        background: var(--additional-color);
+      }
     }
 
     .ticket-card-content {

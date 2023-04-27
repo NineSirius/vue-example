@@ -24,6 +24,34 @@ export const registerUser = (data) => {
   return strapiApi.post('auth/local/register', { json: data }).json()
 }
 
+export const getPageInfo = (pageName) => {
+  return strapiApi.get(`${pageName}?populate=deep,*`).json()
+}
+
+export const updateImage = async (id, image, token) => {
+  return await strapiApi
+    .post(`upload?id=${id}`, {
+      body: image,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .json()
+}
+
+export const sendPageData = (data, path, token) => {
+  return strapiApi
+    .put(`${path}`, {
+      json: {
+        data
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .json()
+}
+
 export const getUserInfo = (token) => {
   return strapiApi
     .get('users/me?populate=*', {

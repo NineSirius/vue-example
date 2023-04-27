@@ -28,19 +28,32 @@
         >Профиль</v-button
       > -->
 
-      <div class="profile" v-if="isAuthenticated" style="margin-left: auto" ref="ddd">
+      <div class="profile" v-if="userInfo.data" style="margin-left: auto" ref="ddd">
         <button class="profile-btn" @click="profileIsShow = !profileIsShow">
-          <img :src="userInfo.avatar.url" :alt="userInfo.username" class="avatar" />
+          <img
+            :src="userInfo.data.avatar.url"
+            :alt="userInfo.data.username"
+            class="avatar"
+            v-if="userInfo.data.avatar"
+          />
+          <img src="/img/base-avatar.png" :alt="userInfo.data.username" class="avatar" v-else />
         </button>
         <div class="profile-info" :class="{ active: profileIsShow }">
           <div class="user-info">
-            <img :src="userInfo.avatar.url" :alt="userInfo.username" class="avatar" />
+            <img :src="userInfo.data.avatar.url" :alt="userInfo.data.username" class="avatar" />
             <div class="user-info-content">
-              <h4 class="username">{{ userInfo.username }}</h4>
-              <p class="email">{{ userInfo.email }}</p>
+              <h4 class="username">{{ userInfo.data.username }}</h4>
+              <p class="email">{{ userInfo.data.email }}</p>
             </div>
           </div>
 
+          <v-button
+            @click="router.push('/admin')"
+            variant="icon"
+            icon="admin"
+            v-if="userInfo.data.role.name === 'Admin'"
+            >Админка</v-button
+          >
           <v-button @click="logout" variant="icon" icon="sign-out">Выход</v-button>
         </div>
       </div>
@@ -85,7 +98,9 @@
 }
 
 .avatar {
-  width: 100%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -214,6 +229,7 @@ import AuthForm from '@/components/Forms/AuthForm/AuthForm.vue'
 import Cookie from 'js-cookie'
 import router from '../router'
 import { getUserInfo } from '../api/requests'
+import { authDataStore } from '../store/authStore'
 
 watch(router.currentRoute, () => {
   mobileNav.isActive = false
@@ -221,11 +237,7 @@ watch(router.currentRoute, () => {
   console.log(router.currentRoute.value.fullPath)
 })
 
-const userInfo = reactive({
-  username: '',
-  avatar: '',
-  email: ''
-})
+let userInfo = authDataStore()
 
 const logout = () => {
   Cookie.remove('token')
@@ -242,14 +254,12 @@ const switchIsActive = () => {
   mobileNav.isActive = !mobileNav.isActive
 }
 
-const isAuthenticated = ref(Cookie.get('token') || false)
+const token = ref(Cookie.get('token') || false)
 
-if (isAuthenticated.value) {
-  getUserInfo(isAuthenticated.value).then((resp) => {
+if (!userInfo.data && token.value) {
+  getUserInfo(token.value).then((resp) => {
     console.log(resp)
-    userInfo.username = resp.username
-    userInfo.avatar = resp.avatar || '/img/base-avatar.png'
-    userInfo.email = resp.email
+    userInfo.changeData(resp)
   })
 }
 

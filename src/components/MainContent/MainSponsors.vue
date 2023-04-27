@@ -1,10 +1,12 @@
 <template>
   <div class="container">
     <section class="sponsors">
-      <article class="sponsors-item">
-        <img src="/img/sponsor-item.png" alt="First sponsor" />
+      <article class="sponsors-item" v-for="item in SponsorsStore.Sponsors" :key="item.id">
+        <a :href="item.sponsor_link" target="_blank"
+          ><img :src="item.sponsor_logo.data.attributes.url" alt="First sponsor"
+        /></a>
       </article>
-      <article class="sponsors-item">
+      <!-- <article class="sponsors-item">
         <img src="/img/sponsor-item2.png" alt="Second sponsor" />
       </article>
       <article class="sponsors-item">
@@ -15,7 +17,7 @@
       </article>
       <article class="sponsors-item">
         <img src="/img/sponsor-item5.png" alt="Fifth sponsor" />
-      </article>
+      </article> -->
     </section>
   </div>
 </template>
@@ -52,3 +54,17 @@
 @media screen and (max-width: 420px) {
 }
 </style>
+
+<script setup>
+import { getPageInfo } from '../../api/requests'
+import { usePageStore } from '../../store/pageStore'
+
+const SponsorsStore = usePageStore()
+
+if (!SponsorsStore.Sponsors) {
+  getPageInfo('sponsor').then((resp) => {
+    console.log(resp)
+    SponsorsStore.changeState('Sponsors', resp.data.attributes.sponsors)
+  })
+}
+</script>

@@ -123,8 +123,11 @@
 import { reactive, ref } from 'vue'
 import { loginUser, registerUser } from '../../../api/requests'
 import Cookies from 'js-cookie'
+import { authDataStore } from '../../../store/authStore'
 
 let currentPageActive = ref('login')
+
+const authData = authDataStore()
 
 let loginData = reactive({
   identifier: '',
