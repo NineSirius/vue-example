@@ -9,7 +9,8 @@ export const usePageStore = defineStore({
     TeamPage: null,
     GalleryPage: null,
     ContactsPage: null,
-    Sponsors: null
+    Sponsors: null,
+    DigitalMarketing: null
   }),
   actions: {
     changeState(key, data) {

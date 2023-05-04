@@ -1,18 +1,15 @@
 <template>
-  <PageHeader>
+  <PageHeader v-if="GalleryPageStore.GalleryPage.gallery_images">
     <img src="/img/gallery-page-header.png" alt="Header bg" class="img" />
-    <h1 class="title">Gallery</h1>
+    <h1 class="title">{{ GalleryPageStore.GalleryPage.title }}</h1>
     <p>
-      Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. A lacus vestibulum
-      sed arcu non. Dolor magna eget est lorem ipsum dolor sit amet consectetur. Mauris pellentesque
-      pulvinar pellentesque habitant morbi tristique senectus.
+      {{ GalleryPageStore.GalleryPage.description }}
     </p>
     <p>
-      Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar
-      neque laoreet suspendisse interdum consectetur libero.
+      {{ GalleryPageStore.GalleryPage.description2 }}
     </p>
 
-    <v-button @click="startedModal = true">Read More</v-button>
+    <v-button @click="startedModal = true">{{ GalleryPageStore.GalleryPage.btn_text }}</v-button>
   </PageHeader>
 
   <v-modal :isActive="startedModal" @closeModal="startedModal = false">
@@ -23,12 +20,14 @@
     <lightgallery :settings="{ speed: 300, plugins: [lgZoom, lgVideo] }" class="gallery">
       <a
         class="gallery-item"
-        data-src="/img/gallery-pic1.jpg"
-        data-download-url="/img/gallery-pic1.jpg"
+        :data-src="item.image.data.attributes.url"
+        :data-download-url="item.image.data.attributes.url"
+        v-for="item in GalleryPageStore.GalleryPage?.gallery_images"
+        :key="item.id"
       >
-        <img class="img-responsive" src="/img/gallery-pic1.jpg" />
+        <img class="img-responsive" :src="item.image.data.attributes.url" />
       </a>
-      <a
+      <!-- <a
         class="gallery-item"
         data-src="/img/gallery-pic2.jpg"
         data-download-url="/img/gallery-pic2.jpg"
@@ -62,7 +61,7 @@
         data-download-url="/img/gallery-pic6.jpg"
       >
         <img width="200" class="img-responsive" src="/img/gallery-pic6.jpg" />
-      </a>
+      </a> -->
     </lightgallery>
   </div>
 
@@ -116,8 +115,17 @@ import InfoWrapItem from '../../components/InfoWrapItem.vue'
 
 import { ref } from 'vue'
 import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
+import { usePageStore } from '../../store/pageStore'
+import { getPageInfo } from '../../api/requests'
 
 const startedModal = ref(false)
+
+const GalleryPageStore = usePageStore()
+
+getPageInfo('gallery').then((resp) => {
+  GalleryPageStore.changeState('GalleryPage', resp.data.attributes)
+  console.log(GalleryPageStore.GalleryPage.gallery_images)
+})
 
 // const onInit = () => {
 //   console.log('lightGallery has been initialized')

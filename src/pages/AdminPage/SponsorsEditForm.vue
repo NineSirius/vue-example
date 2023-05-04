@@ -1,40 +1,48 @@
 <template>
-  <form @submit.prevent="saveData">
-    <div class="admin-content blur">
+  <form @submit.prevent="saveData" v-if="Sponsors.data">
+    <div class="admin-content">
       <div class="admin-content-row-wrap">
-        <h4 class="caption">page_header</h4>
-        <div class="admin-content-row">
+        <h4 class="caption">sponsors</h4>
+        <div
+          class="admin-content-row"
+          v-for="(item, index) in Sponsors.data.sponsors"
+          :key="item.id"
+        >
           <label>
-            <span class="caption">title</span>
-            <input type="text" placeholder="title" v-model="AboutPage.data.page_header.title" />
+            <img
+              :src="
+                previewLinks[index] ? previewLinks[index] : item.sponsor_logo?.data?.attributes?.url
+              "
+              class="preview_image"
+            />
+            <span class="caption">image</span>
+            <input
+              type="file"
+              placeholder="title"
+              @change="changeImage($event, item.sponsor_logo.data.id, index)"
+            />
           </label>
           <label>
-            <span class="caption">description</span>
-            <textarea
-              placeholder="description"
-              v-model="AboutPage.data.page_header.description"
-              rows="5"
-            ></textarea>
-          </label>
-          <label>
-            <span class="caption">description2</span>
-            <textarea
-              placeholder="description"
-              v-model="AboutPage.data.page_header.description2"
-              rows="5"
-            ></textarea>
+            <span class="caption">sponsor_link</span>
+            <input
+              type="text"
+              placeholder="link"
+              v-model="Sponsors.data.sponsors[index].sponsor_link"
+            />
           </label>
         </div>
       </div>
+
+      <v-button type="submit" :loading="isLoading">Сохранить</v-button>
     </div>
   </form>
 
   <div class="message" :class="{ active: isSaved }">Успешно сохранено</div>
-  <div class="message error" :class="{ active: isErrror }">При сохранении возникла ошибка</div>
+  <div class="message error" :class="{ active: isError }">При сохранении возникла ошибка</div>
 </template>
 
 <script setup>
-import { reactive, ref, isProxy, toRaw } from 'vue'
+import { reactive, ref, toRaw } from 'vue'
 import { getPageInfo, sendPageData, updateImage } from '../../api/requests'
 import Cookie from 'js-cookie'
 
@@ -43,47 +51,50 @@ const Sponsors = reactive({
 })
 
 const isSaved = ref(false)
-const isErrror = ref(false)
+const isError = ref(false)
+const isLoading = ref(false)
 
-const AboutPageStatus = ref(false)
+const image = ref([{}, {}, {}, {}, {}])
+const previewLinks = ref(['', '', '', '', ''])
 
-const image = reactive({
-  file: null,
-  id: null,
-  previewLink: null
-})
-const changeImage = (e) => {
-  console.log('wtf')
-  image.file = e.target.files[0]
-  image.id = 7
-  image.previewLink = URL.createObjectURL(e.target.files[0])
+const changeImage = (e, id, index) => {
+  image.value[index] = {
+    file: e.target.files[0],
+    id: id
+  }
+  previewLinks.value[index] = URL.createObjectURL(e.target.files[0])
 }
 
-if (!AboutPage.data) {
-  getPageInfo('about').then((resp) => {
-    AboutPage.data = resp.data.attributes
+if (!Sponsors.data) {
+  getPageInfo('sponsor').then((resp) => {
+    Sponsors.data = resp.data.attributes
   })
 }
 
 const saveData = async () => {
-  AboutPageStatus.value = true
+  isLoading.value = true
 
-  let rawObject = toRaw(AboutPage)
+  let rawObject = toRaw(Sponsors)
 
   if (rawObject) {
-    if (image.file) {
-      const imgData = new FormData()
-      imgData.append('files', image.file)
+    const publicImages = image.value.map((item, index) => {
+      if (item.file) {
+        const ImageData = new FormData()
+        ImageData.append('files', item.file)
 
-      await updateImage(image.id, imgData, Cookie.get('token'))
-        .then((resp) => {
-          console.log(rawObject)
-          rawObject.data.product_info.product_price_info.image = resp
+        updateImage(item.id, ImageData, Cookie.get('token')).then((resp) => {
+          Sponsors.data.sponsors[index].sponsor_logo = resp
         })
-        .catch((err) => console.log(err))
-    }
+      }
+    })
 
-    await sendPageData(rawObject.data, 'about', Cookie.get('token'))
+    rawObject.data.sponsors.map((item) => {
+      if (item.sponsor_logo?.data) {
+        delete item.sponsor_logo
+      }
+    })
+
+    await sendPageData(rawObject.data, 'sponsor', Cookie.get('token'))
       .then((resp) => {
         console.log(rawObject)
         isSaved.value = true
@@ -92,13 +103,13 @@ const saveData = async () => {
         }, 3000)
       })
       .catch((err) => {
-        isErrror.value = true
+        isError.value = true
         setTimeout(() => {
-          isErrror.value = false
+          isError.value = false
         }, 3000)
       })
       .finally(() => {
-        AboutPageStatus.value = false
+        isLoading.value = false
       })
   }
 }
@@ -126,12 +137,11 @@ const saveData = async () => {
   &.error {
     background: #d8360d;
   }
-
-  &.active {
-    transform: translate(-50%, 100px);
-  }
 }
 
+.active {
+  transform: translate(-50%, 100px);
+}
 .preview_image {
   max-width: 200px;
   margin: 20px 0;

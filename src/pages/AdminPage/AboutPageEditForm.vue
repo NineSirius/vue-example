@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="saveData">
+  <form @submit.prevent="saveData" v-if="AboutPage.data">
     <div class="admin-content blur">
       <div class="admin-content-row-wrap">
         <h4 class="caption">page_header</h4>
@@ -164,7 +164,7 @@
                   :src="
                     image.previewLink
                       ? image.previewLink
-                      : AboutPage.data.product_info.product_price_info.image.data.attributes.url
+                      : AboutPage.data.product_info.product_price_info.image?.data?.attributes?.url
                   "
                   class="preview_image"
                 />
@@ -353,8 +353,7 @@ const saveData = async () => {
         })
         .catch((err) => console.log(err))
     } else {
-      const img = rawObject.data.product_info.product_price_info.image.data.attributes
-      rawObject.data.product_info.product_price_info.image = img
+      const img = delete rawObject.data.product_info.product_price_info.image
     }
 
     await sendPageData(rawObject.data, 'about', Cookie.get('token'))

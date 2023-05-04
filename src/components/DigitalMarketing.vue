@@ -1,58 +1,40 @@
 <template>
-  <section class="container" :style="{ padding: '80px 0 !important' }">
+  <section
+    class="container"
+    :style="{ padding: '80px 0 !important' }"
+    v-if="DigitalMarketingStore.DigitalMarketing"
+  >
     <div class="title-wrap">
-      <h2 class="title">Why you need digital marketing</h2>
-      <p class="desc">Sample text. Click to select the Text Element.</p>
+      <h2 class="title">{{ DigitalMarketingStore.DigitalMarketing.title }}</h2>
+      <p class="desc">{{ DigitalMarketingStore.DigitalMarketing.description }}</p>
     </div>
 
     <div class="card-wrapper">
-      <div class="card">
+      <div
+        class="card"
+        v-for="item in DigitalMarketingStore.DigitalMarketing.digital_marketing_features"
+        :key="item.id"
+      >
         <span class="icon">
-          <i class="icon-web"></i>
+          <i :class="`icon-${item.icon_name}`"></i>
         </span>
-        <h4>Seo</h4>
-        <p>Sample text. Click to select the Text Element.</p>
-      </div>
-      <div class="card">
-        <span class="icon">
-          <i class="icon-tip"></i>
-        </span>
-        <h4>Development</h4>
-        <p>Sample text. Click to select the Text Element.</p>
-      </div>
-      <div class="card">
-        <span class="icon">
-          <i class="icon-cog"></i>
-        </span>
-        <h4>Web design</h4>
-        <p>Sample text. Click to select the Text Element.</p>
-      </div>
-      <div class="card">
-        <span class="icon">
-          <i class="icon-location"></i>
-        </span>
-        <h4>Cms</h4>
-        <p>Sample text. Click to select the Text Element.</p>
-      </div>
-      <div class="card">
-        <span class="icon">
-          <i class="icon-web"></i>
-        </span>
-        <h4>Maintenance</h4>
-        <p>Sample text. Click to select the Text Element.</p>
-      </div>
-      <div class="card">
-        <span class="icon">
-          <i class="icon-database"></i>
-        </span>
-        <h4>Hosting</h4>
-        <p>Sample text. Click to select the Text Element.</p>
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.desc }}</p>
       </div>
     </div>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { getPageInfo } from '../api/requests'
+import { usePageStore } from '../store/pageStore'
+
+const DigitalMarketingStore = usePageStore()
+
+getPageInfo('digital-marketing').then((resp) => {
+  DigitalMarketingStore.changeState('DigitalMarketing', resp.data.attributes)
+})
+</script>
 
 <style lang="scss" scoped>
 .title-wrap {

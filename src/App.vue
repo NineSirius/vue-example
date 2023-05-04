@@ -15,7 +15,7 @@ import MainFooter from './components/MainFooter.vue'
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrapper {
   height: 100%;
   min-height: 100vh;

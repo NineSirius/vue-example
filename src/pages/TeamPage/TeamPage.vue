@@ -1,18 +1,15 @@
 <template>
-  <PageHeader>
+  <PageHeader v-if="TeamPageStore.TeamPage">
     <img src="/img/team-page-header.png" alt="image" />
-    <h1 class="title">Our Team</h1>
+    <h1 class="title">{{ TeamPageStore.TeamPage.title }}</h1>
     <p>
-      Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. A lacus vestibulum
-      sed arcu non. Dolor magna eget est lorem ipsum dolor sit amet consectetur. Mauris pellentesque
-      pulvinar pellentesque habitant morbi tristique senectus.
+      {{ TeamPageStore.TeamPage.description }}
     </p>
     <p>
-      Nec feugiat nisl pretium fusce id. Justo laoreet sit amet cursus sit amet. Porta non pulvinar
-      neque laoreet suspendisse interdum consectetur libero.
+      {{ TeamPageStore.TeamPage.description2 }}
     </p>
 
-    <v-button @click="startedModal = true">Read More</v-button>
+    <v-button @click="startedModal = true">{{ TeamPageStore.TeamPage.btn_text }}</v-button>
   </PageHeader>
   <TeamList />
   <NumberContact style="background-color: var(--additional-color)"></NumberContact>
@@ -28,8 +25,16 @@ import NumberContact from '@/components/shared/NumberContact.vue'
 import TeamList from '../../components/TeamList/TeamList.vue'
 import MessageForm from '../../components/Forms/MessageForm/MessageForm.vue'
 import { ref } from 'vue'
+import { usePageStore } from '../../store/pageStore'
+import { getPageInfo } from '../../api/requests'
 
 const startedModal = ref(false)
+
+const TeamPageStore = usePageStore()
+
+getPageInfo('team-page').then((resp) => {
+  TeamPageStore.changeState('TeamPage', resp.data.attributes)
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -33,13 +33,16 @@
             </button>
           </li>
           <li class="nav-list-item">
-            <button @click="activeTab = { store: 'HomePage', api: 'home' }" class="admin-nav-item">
+            <button
+              @click="activeTab = { store: 'GalleryPage', api: 'gallery' }"
+              class="admin-nav-item"
+            >
               Галерея
             </button>
           </li>
           <li class="nav-list-item">
             <button
-              @click="tabChange({ api: contacts, store: 'ContactsPage' })"
+              @click="activeTab = { store: 'ContactsPage', api: 'contacts' }"
               class="admin-nav-item"
             >
               Контакты
@@ -50,21 +53,31 @@
         <ul class="nav-list">
           <li class="nav-list-item">
             <button
-              @click="activeTab = { store: 'Sponsors', api: 'sponsors' }"
+              @click="activeTab = { store: 'Sponsors', api: 'sponsor' }"
               class="admin-nav-item"
             >
               Спонсоры
             </button>
           </li>
-          <li class="nav-list-item"><button class="admin-nav-item">Digital Marketing</button></li>
+          <li class="nav-list-item">
+            <button
+              class="admin-nav-item"
+              @click="activeTab = { store: 'DigitalMarketing', api: 'digital-marketing' }"
+            >
+              Digital Marketing
+            </button>
+          </li>
         </ul>
       </nav>
 
-      <AboutPageEditForm v-if="editableData.AboutPage && activeTab.store" />
-      <SponsorsEditForm v-else-if="editableData.Sponsors && activeTab.store" />
+      <AboutPageEditForm v-if="activeTab.store === 'AboutPage'" />
+      <SponsorsEditForm v-else-if="activeTab.store === 'Sponsors'" />
+      <DigitalMarketingForm v-else-if="activeTab.store === 'DigitalMarketing'" />
+      <TeamPageEditForm v-else-if="activeTab.store === 'TeamPage'" />
+      <GalleryPageEdit v-else-if="activeTab.store === 'GalleryPage'" />
 
       <div class="loader" v-else>
-        <v-loader></v-loader>
+        <h2>Пока что нету</h2>
       </div>
     </div>
   </div>
@@ -173,6 +186,9 @@ import { usePageStore } from '../../store/pageStore'
 import { getPageInfo } from '../../api/requests'
 import AboutPageEditForm from '../AdminPage/AboutPageEditForm.vue'
 import SponsorsEditForm from './SponsorsEditForm.vue'
+import DigitalMarketingForm from './DigitalMarketingForm.vue'
+import TeamPageEditForm from './TeamPageEditForm.vue'
+import GalleryPageEdit from './GalleryPageEdit.vue'
 
 const store = usePageStore()
 
@@ -181,18 +197,4 @@ const authData = authDataStore()
 const editableData = reactive({})
 
 let activeTab = ref({ store: 'AboutPage', api: 'about' })
-
-const tabChange = (data) => {
-  console.log(data)
-  activeTab.value = data
-}
-
-watch(activeTab, () => {
-  if (!editableData[activeTab.value.store]) {
-    getPageInfo(activeTab.value.api).then((resp) => {
-      editableData[activeTab.value.store] = resp.data.attributes
-      console.log(resp)
-    })
-  }
-})
 </script>
